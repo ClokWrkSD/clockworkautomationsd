@@ -598,22 +598,19 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div>
         <p class="eyebrow">Free 30-minute call</p>
         <h2 id="book-title" style="margin-block:14px 18px">Find your biggest money leak in one conversation.</h2>
-        <p class="lede">Tell us a little about your business. We'll reply within one business day to set up a time.</p>
+        <p class="lede">Tell us a little about your business. Book a time that works for you, or send a quick note and we'll reply within one business day.</p>
         <ul class="book-points">
           <li>No pitch deck, no obligation</li>
           <li>You leave with at least one fix you can use right away</li>
-          <li>In person in San Diego County, or by video</li>
+          <li>By phone, or in person in San Diego County</li>
         </ul>
       </div>
-      <form class="form" id="book-form">
-        <div class="field"><label for="b-name">Your name</label><input id="b-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="b-biz">Business name</label><input id="b-biz" name="business" autocomplete="organization" required></div>
-        <div class="field"><label for="b-email">Email</label><input id="b-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="b-leak">What's eating your time or cash?</label><textarea id="b-leak" name="leak" placeholder="For example: customers pay late and we don't have time to chase them."></textarea></div>
-        <button class="btn btn-primary" type="submit">Let's find your biggest leak</button>
-        <p class="form-status" id="b-status" hidden></p>
+      <div class="form" id="book-form">
+        <a class="btn btn-primary" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1Mm-5VaFmechJsknUkRKHrPNxDYxwu2I8Pr5WTZRNSMJzSY4w3Lagn0c-ZSu9RTyxVlRXeceOq" target="_blank" rel="noopener" style="width:100%;justify-content:center">Pick a time for your free call</a>
+        <p class="form-note" style="text-align:center;margin:4px 0 0">Or tell us about your business and we'll reach out:</p>
+        <iframe src="https://forms.monday.com/forms/embed/4fab27cc71d2dfadbc544ce716647869?r=use1" title="Contact Clockwork Automation" loading="lazy" style="width:100%;height:760px;border:0;border-radius:12px;background:#fff"></iframe>
         <p class="form-note">Your details are used only to reply to you. Prefer to talk? Call or text <a href="tel:+16194892289">(619) 489-2289</a> or email clockworkautomationsd@gmail.com</p>
-      </form>
+      </div>
     </div>
   </section>
 </main>
@@ -636,12 +633,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   ['c-hours', 'c-rate', 'c-overdue'].forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
   calc();
 
-  document.getElementById('book-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var s = document.getElementById('b-status');
-    s.textContent = 'Preview only: connect this form to your inbox before launch.';
-    s.hidden = false;
-  });
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ticks = Array.prototype.slice.call(document.querySelectorAll('#ticks .tick'));
