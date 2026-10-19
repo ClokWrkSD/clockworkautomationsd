@@ -5,7 +5,7 @@
 ## The Clockwork Suite (tools that all run on one CRM hub the client owns; pick any combination, chosen together on the first call)
 - Clockwork Collect (collections): daily refresh of overdue accounts, stage-based reminder texts and emails, a prioritized call list, and payment tracking.
 - Clockwork Follow-Up (lead follow-up): lead capture, quote follow-up sequences, rebooking reminders and review requests.
-- Clockwork Connect (phones and texting): business numbers and two-way texting set up and supported by Clockwork Automation, with every call and text logged to the CRM hub.
+- Clockwork Connect (phones, texting and AI phone agents): business numbers and two-way texting set up and supported by Clockwork Automation, with every call and text logged to the CRM hub, plus an AI phone agent trained on the client's business to answer calls, take lead details and hand off to the team.
 - Clockwork Pulse (owner dashboard): weekly business numbers in one automatically updated view.
 - Full Clockwork Suite: all four tools connected, at a bundle price.
 
