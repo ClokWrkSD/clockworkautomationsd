@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Free Money-Leak Calculator for Small Businesses | Clockwork Automation</title>
+<meta name="description" content="Find out what late payments, quiet quotes and missed calls cost your business each year. Free two-minute calculator from Clockwork Automation, San Diego.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://clockworkautomationsd.com/leak-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How much is your business losing to late payments and missed follow-up?">
+<meta property="og:description" content="Free two-minute money-leak calculator for owner-run businesses. See what you could get back each year.">
+<meta property="og:url" content="https://clockworkautomationsd.com/leak-calculator/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working instrument. Inputs on the left in the questionnaire's order, a sticky readout on the right that updates as the owner talks. Locked until the visitor leaves contact details. */
+:root {
+  --paper: #f3f5f8; --surface: #ffffff; --ink: #101a2c; --muted: #536077; --line: #d9dfe8;
+  --brass: #a9741b; --brass-ink: #7f560f; --brass-wash: #f4ead7; --good: #1f7a55; --bar-bg: #e7ebf1; --bad: #b3261e;
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #0b111d; --surface: #121a2a; --ink: #e8edf4; --muted: #9aa7ba; --line: #233049; --brass: #e0a94b; --brass-ink: #ebbb68; --brass-wash: #2a2416; --good: #4cc391; --bar-bg: #1b2538; --bad: #ff8a80; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --paper: #0b111d; --surface: #121a2a; --ink: #e8edf4; --muted: #9aa7ba; --line: #233049; --brass: #e0a94b; --brass-ink: #ebbb68; --brass-wash: #2a2416; --good: #4cc391; --bar-bg: #1b2538; --bad: #ff8a80; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1160px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; padding-bottom: 20px; border-bottom: 2px solid var(--ink); margin-bottom: 24px; }
+.brand { font-family: var(--f-display); font-stretch: 125%; font-weight: 800; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass-ink); }
+h1 { font-family: var(--f-display); font-stretch: 120%; font-weight: 800; font-size: clamp(28px, 4vw, 40px); line-height: 1.05; margin: 6px 0 0; text-wrap: balance; }
+.biz { display: grid; gap: 4px; min-width: 0; flex: 0 1 280px; }
+.biz label { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.biz input { width: 100%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 10px 12px; font: 600 16px var(--f-body); }
+.stage { position: relative; }
+.grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.stage.locked .grid { filter: blur(7px); opacity: .55; pointer-events: none; user-select: none; max-height: 760px; overflow: hidden; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; min-width: 0; }
+.panel + .panel { margin-top: 16px; }
+.panel h2 { font-family: var(--f-display); font-stretch: 112%; font-weight: 700; font-size: 19px; margin: 0 0 4px; }
+.panel .sub { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+@media (max-width: 560px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+.field { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.field label { font-size: 14px; font-weight: 600; }
+.field .ask { font-size: 12.5px; color: var(--muted); }
+.in { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.in:focus-within { border-color: var(--brass); }
+.in span { padding: 0 10px; font-family: var(--f-mono); font-size: 14px; color: var(--muted); }
+.in input { flex: 1; min-width: 0; border: 0; background: transparent; font: 500 17px var(--f-mono); color: var(--ink); padding: 10px 10px 10px 0; font-variant-numeric: tabular-nums; outline: none; }
+.group-label { grid-column: 1 / -1; font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brass-ink); padding-top: 6px; border-top: 1px dashed var(--line); margin-top: 4px; }
+.group-label:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+.presets { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+.presets button { border: 0; background: transparent; color: var(--muted); font: 600 14px var(--f-body); padding: 9px 14px; cursor: pointer; }
+.presets button + button { border-left: 1px solid var(--line); }
+.presets button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.results { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); }
+.big { display: grid; gap: 2px; padding-bottom: 16px; border-bottom: 1px dashed var(--line); }
+.k { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.big .v { font-family: var(--f-display); font-stretch: 120%; font-weight: 800; font-size: clamp(40px, 6vw, 58px); line-height: 1; color: var(--good); font-variant-numeric: tabular-nums; }
+.big p { font-size: 13.5px; color: var(--muted); margin: 6px 0 0; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.stat .v { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: 24px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat p { font-size: 12.5px; color: var(--muted); margin: 2px 0 0; }
+.bars { display: grid; gap: 12px; padding: 16px 0; }
+.bar-row { display: grid; gap: 5px; }
+.bar-head { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.bar-head b { font-family: var(--f-mono); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-head small { display: block; color: var(--muted); font-size: 12px; }
+.track { height: 10px; border-radius: 5px; background: var(--bar-bg); overflow: hidden; }
+.fill { height: 100%; border-radius: 5px; background: var(--brass); transition: width .25s ease; }
+.tool { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .04em; color: var(--brass-ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 4px; }
+.btn { border: 1px solid transparent; border-radius: 8px; padding: 11px 16px; font: 600 15px var(--f-body); cursor: pointer; background: var(--ink); color: var(--paper); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.status { font-size: 13.5px; color: var(--good); font-weight: 600; }
+.recap { width: 100%; margin-top: 12px; min-height: 160px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font: 13px/1.5 var(--f-mono); padding: 12px; }
+.note { font-size: 12.5px; color: var(--muted); margin-top: 14px; }
+.leak-line { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 10px; background: var(--brass-wash); margin-bottom: 16px; }
+.leak-line b { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.leak-line span { font-size: 14px; color: var(--muted); }
+
+/* Lead gate */
+.gate { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); width: min(540px, 100%); z-index: 5; background: var(--surface); border: 2px solid var(--ink); border-radius: 14px; padding: 26px; box-shadow: 0 18px 50px rgba(16, 26, 44, .22); }
+.gate h2 { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: clamp(22px, 3.4vw, 28px); line-height: 1.12; margin: 6px 0 8px; text-wrap: balance; }
+.gate .lede { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
+.gate .fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.gate .field label { font-size: 14px; }
+.gate input[type="text"], .gate input[type="email"], .gate input[type="tel"] { width: 100%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 8px; padding: 12px; font: 500 16px var(--f-body); }
+.gate input[aria-invalid="true"] { border-color: var(--bad); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.consent { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; margin-top: 14px; }
+.consent input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--brass); }
+.consent label { font-size: 11.5px; line-height: 1.45; color: var(--muted); font-weight: 400; }
+.gate .btn { width: 100%; margin-top: 16px; padding: 14px 16px; font-size: 16px; }
+.gate .btn[disabled] { opacity: .6; cursor: progress; }
+.err { color: var(--bad); font-size: 13px; min-height: 1.2em; margin: 10px 0 0; }
+.gate .fine { font-size: 11px; color: var(--muted); margin: 10px 0 0; }
+@media (max-width: 560px) { .gate { padding: 20px; top: 12px; } .stage.locked .grid { max-height: 900px; } }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand">Clockwork Automation</div>
+      <h1 id="title">What you could get back</h1>
+    </div>
+    <div class="biz">
+      <label for="biz">Business name</label>
+      <input id="biz" placeholder="e.g. Harbor Cleaning Co." autocomplete="organization">
+    </div>
+  </header>
+
+  <div class="stage locked" id="stage">
+  <div class="grid" id="calc" inert>
+    <div>
+      <section class="panel" aria-labelledby="h-numbers">
+        <h2 id="h-numbers">Your numbers</h2>
+        <p class="sub">Use your own estimates. The sample values are placeholders; replace every one.</p>
+        <div class="fields">
+          <div class="group-label">Time</div>
+          <div class="field"><label for="hours">Hours a week on follow-up and admin</label><span class="ask">Across everyone</span><div class="in"><span>hrs</span><input id="hours" type="number" inputmode="decimal" min="0" value="12"></div></div>
+          <div class="field"><label for="rate">Value of one hour</label><span class="ask">Your time or your office person's</span><div class="in"><span>$</span><input id="rate" type="number" inputmode="decimal" min="0" value="60"></div></div>
+
+          <div class="group-label">Cash</div>
+          <div class="field"><label for="overdue">Past due right now</label><span class="ask">Total overdue invoices</span><div class="in"><span>$</span><input id="overdue" type="number" inputmode="decimal" min="0" value="25000"></div></div>
+          <div class="field"><label for="writeoffs">Written off last year</label><span class="ask">Money given up as uncollectable</span><div class="in"><span>$</span><input id="writeoffs" type="number" inputmode="decimal" min="0" value="8000"></div></div>
+
+          <div class="group-label">Leads</div>
+          <div class="field"><label for="quotes">Quotes that go quiet each month</label><span class="ask">No yes, no no</span><div class="in"><span>#</span><input id="quotes" type="number" inputmode="decimal" min="0" value="15"></div></div>
+          <div class="field"><label for="job">Average job value</label><span class="ask">What a typical sale is worth</span><div class="in"><span>$</span><input id="job" type="number" inputmode="decimal" min="0" value="1200"></div></div>
+
+          <div class="group-label">Phones</div>
+          <div class="field"><label for="missed">Missed calls a week</label><span class="ask">Calls nobody answers</span><div class="in"><span>#</span><input id="missed" type="number" inputmode="decimal" min="0" value="10"></div></div>
+          <div class="field"><label for="callbook">Share of those that would have booked</label><span class="ask">Your gut estimate</span><div class="in"><span>%</span><input id="callbook" type="number" inputmode="decimal" min="0" max="100" value="20"></div></div>
+
+          <div class="group-label">Profit</div>
+          <div class="field"><label for="margin">Profit margin on a job</label><span class="ask">Applied to new revenue so it counts profit only</span><div class="in"><span>%</span><input id="margin" type="number" inputmode="decimal" min="0" max="100" value="35"></div></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-assume">
+        <h2 id="h-assume">How much automation recovers</h2>
+        <p class="sub">Starting assumptions, not guarantees. Pick a scenario, then adjust any number.</p>
+        <div class="presets" role="group" aria-label="Scenario">
+          <button type="button" data-preset="cautious" aria-pressed="true">Cautious</button>
+          <button type="button" data-preset="expected" aria-pressed="false">Expected</button>
+          <button type="button" data-preset="strong" aria-pressed="false">Strong</button>
+        </div>
+        <div class="fields">
+          <div class="field"><label for="a-hours">Admin hours automated</label><div class="in"><span>%</span><input id="a-hours" type="number" min="0" max="100"></div></div>
+          <div class="field"><label for="a-writeoffs">Write-offs prevented</label><div class="in"><span>%</span><input id="a-writeoffs" type="number" min="0" max="100"></div></div>
+          <div class="field"><label for="a-overdue">Overdue balance collected sooner</label><div class="in"><span>%</span><input id="a-overdue" type="number" min="0" max="100"></div></div>
+          <div class="field"><label for="a-quotes">Quiet quotes won back</label><div class="in"><span>%</span><input id="a-quotes" type="number" min="0" max="100"></div></div>
+          <div class="field"><label for="a-calls">Missed bookings recovered</label><div class="in"><span>%</span><input id="a-calls" type="number" min="0" max="100"></div></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-invest">
+        <h2 id="h-invest">Investment</h2>
+        <p class="sub">The audit fee is credited toward the build, so it isn't counted twice.</p>
+        <div class="fields">
+          <div class="field"><label for="build">Build price</label><span class="ask">Quoted after the audit</span><div class="in"><span>$</span><input id="build" type="number" inputmode="decimal" min="0" value="7500"></div></div>
+          <div class="field"><label for="support">Monthly support</label><span class="ask">$500 Essentials or $1,200 Growth</span><div class="in"><span>$</span><input id="support" type="number" inputmode="decimal" min="0" value="500"></div></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="panel results" aria-live="polite" aria-labelledby="h-results">
+      <h2 id="h-results" class="k" style="font-family:var(--f-mono);font-size:12px;font-weight:500;margin-bottom:12px">Results</h2>
+      <div class="leak-line"><span>What these leaks cost today, per year</span><b id="o-leak">$0</b></div>
+      <div class="big">
+        <span class="k">Could get back each year</span>
+        <span class="v" id="o-total">$0</span>
+        <p>Hours saved, write-offs prevented, and profit from won-back quotes and calls.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="k">Cash freed up</span><div class="v" id="o-cash">$0</div><p>One time, from collecting overdue balances sooner</p></div>
+        <div class="stat"><span class="k">Payback</span><div class="v" id="o-payback">–</div><p id="o-payback-note">Months for monthly gains to cover the build</p></div>
+        <div class="stat"><span class="k">First-year net</span><div class="v" id="o-net">$0</div><p>Yearly gain minus build and 12 months of support</p></div>
+        <div class="stat"><span class="k">Hours back</span><div class="v" id="o-hrs">0</div><p>Per week, for your team</p></div>
+      </div>
+      <div class="bars" id="bars"></div>
+      <div class="actions">
+        <button class="btn" type="button" id="copy">Copy my report</button>
+        <span class="status" id="copy-status" hidden></span>
+      </div>
+      <textarea class="recap" id="recap" readonly hidden aria-label="Report text"></textarea>
+      <p class="note">Estimates based on your own numbers and the scenario chosen above. Actual results depend on the business and are confirmed in an automation audit.</p>
+    </aside>
+  </div>
+
+  <section class="gate" id="gate" aria-labelledby="gate-title">
+    <div class="brand">Free money-leak calculator</div>
+    <h2 id="gate-title">See how much your business is losing to late payments, quiet quotes and missed calls.</h2>
+    <p class="lede">Enter a few numbers and get a personal report in about two minutes. Tell us where to send it and the calculator opens right away.</p>
+    <form id="gate-form" novalidate>
+      <div class="fields">
+        <div class="field"><label for="g-name">Name</label><input id="g-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="g-email">Email</label><input id="g-email" name="email" type="email" inputmode="email" autocomplete="email" required></div>
+        <div class="field"><label for="g-phone">Mobile phone</label><input id="g-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(619) 555-0123" required></div>
+        <div class="hp" aria-hidden="true"><label for="g-site">Leave this field empty</label><input id="g-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      </div>
+      <div class="consent">
+        <input id="g-consent" name="consent" type="checkbox" required>
+        <label for="g-consent">By checking this box and clicking the button, I agree that Clockwork Automation may contact me by phone call, text message and email at the number and address above about my report and about its services, including marketing, and that calls and texts may use automated technology. Consent is not a condition of any purchase. Message and data rates may apply. Reply STOP to any text to opt out, or HELP for help. We do not sell your information.</label>
+      </div>
+      <p class="err" id="g-err" role="alert"></p>
+      <button class="btn" type="submit" id="g-submit">How much am I losing?</button>
+      <p class="fine">Free. No credit card. A San Diego business automation team.</p>
+    </form>
+  </section>
+  </div>
+
+  <p class="note" style="margin-top:32px">Clockwork Automation · San Diego, California · <a href="../" style="color:inherit">clockworkautomationsd.com</a> · <a href="tel:+16194892289" style="color:inherit">(619) 489-2289</a></p>
+</div>
+
+<script>
+(function () {
+  // Make webhook that receives every lead. Posts are form-encoded so the browser sends them without a preflight.
+  var ENDPOINT = 'https://hook.us2.make.com/xvg05bb0cgtrnun6aeze5vjqiv3ft4me';
+  var CONSENT_TEXT = document.querySelector('label[for="g-consent"]').textContent.trim();
+
+  var presets = {
+    cautious: { 'a-hours': 30, 'a-writeoffs': 25, 'a-overdue': 20, 'a-quotes': 5, 'a-calls': 30 },
+    expected: { 'a-hours': 50, 'a-writeoffs': 40, 'a-overdue': 35, 'a-quotes': 10, 'a-calls': 50 },
+    strong:   { 'a-hours': 70, 'a-writeoffs': 60, 'a-overdue': 50, 'a-quotes': 15, 'a-calls': 70 }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var v = function (id) { var n = parseFloat($(id).value); return isFinite(n) && n > 0 ? n : 0; };
+  var pct = function (id) { return Math.min(v(id), 100) / 100; };
+  var money = function (n) { return (n < 0 ? '-$' : '$') + Math.round(Math.abs(n)).toLocaleString('en-US'); };
+  var current = 'cautious';
+  var lead = null;
+  var snapshot = {};
+
+  function store(k, val) { try { if (val === null) localStorage.removeItem(k); else localStorage.setItem(k, val); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  function send(data) {
+    try {
+      var body = new URLSearchParams(data).toString();
+      fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function params() {
+    var out = {}, q = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (q.get(k)) out[k] = q.get(k); });
+    return out;
+  }
+
+  function applyPreset(name) {
+    current = name;
+    var p = presets[name];
+    Object.keys(p).forEach(function (k) { $(k).value = p[k]; });
+    document.querySelectorAll('[data-preset]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.preset === name)); });
+    calc();
+  }
+
+  var lastSummary = '';
+  function calc() {
+    var margin = pct('margin');
+    var hoursCost = v('hours') * v('rate') * 50;
+    var quoteRevenue = v('quotes') * v('job') * 12;
+    var callRevenue = v('missed') * pct('callbook') * v('job') * 50;
+    var leak = hoursCost + v('writeoffs') + (quoteRevenue + callRevenue) * margin;
+
+    var rows = [
+      { name: 'Time saved', tool: 'Every tool', detail: Math.round(v('hours') * pct('a-hours') * 10) / 10 + ' hrs/week back', val: hoursCost * pct('a-hours') },
+      { name: 'Write-offs prevented', tool: 'Clockwork Collect', detail: pct('a-writeoffs') * 100 + '% of last year’s write-offs', val: v('writeoffs') * pct('a-writeoffs') },
+      { name: 'Quiet quotes won back', tool: 'Clockwork Follow-Up', detail: 'profit on ' + Math.round(v('quotes') * pct('a-quotes') * 12 * 10) / 10 + ' more jobs/year', val: quoteRevenue * pct('a-quotes') * margin },
+      { name: 'Missed calls recovered', tool: 'Clockwork Connect', detail: 'profit on ' + Math.round(v('missed') * pct('callbook') * pct('a-calls') * 50 * 10) / 10 + ' more jobs/year', val: callRevenue * pct('a-calls') * margin }
+    ];
+    var total = rows.reduce(function (s, r) { return s + r.val; }, 0);
+    var cash = v('overdue') * pct('a-overdue');
+    var build = v('build'), support = v('support');
+    var monthlyNet = total / 12 - support;
+    var payback = monthlyNet > 0 ? build / monthlyNet : null;
+    var net = total - build - support * 12;
+
+    $('o-leak').textContent = money(leak);
+    $('o-total').textContent = money(total);
+    $('o-cash').textContent = money(cash);
+    $('o-net').textContent = money(net);
+    $('o-hrs').textContent = (Math.round(v('hours') * pct('a-hours') * 10) / 10).toString();
+    if (payback === null) { $('o-payback').textContent = 'Not yet'; $('o-payback-note').textContent = 'Monthly gains don’t cover support at these numbers'; }
+    else { $('o-payback').textContent = (payback < 1 ? '<1' : (Math.round(payback * 10) / 10)) + ' mo'; $('o-payback-note').textContent = 'Months for monthly gains to cover the build'; }
+
+    var max = Math.max.apply(null, rows.map(function (r) { return r.val; }).concat([1]));
+    $('bars').innerHTML = rows.map(function (r) {
+      return '<div class="bar-row"><div class="bar-head"><span>' + r.name + '<small>' + r.detail + '</small></span><b>' + money(r.val) + '/yr</b></div><div class="track"><div class="fill" style="width:' + (r.val / max * 100).toFixed(1) + '%"></div></div><span class="tool">' + r.tool + '</span></div>';
+    }).join('');
+
+    var biz = $('biz').value.trim();
+    $('title').textContent = biz ? 'What ' + biz + ' could get back' : 'What you could get back';
+    var label = { cautious: 'cautious', expected: 'expected', strong: 'strong' }[current] || 'custom';
+    snapshot = {
+      scenario: label, hours_week: String(v('hours')), hourly_value: String(v('rate')), overdue: String(v('overdue')), writeoffs: String(v('writeoffs')),
+      quiet_quotes_month: String(v('quotes')), job_value: String(v('job')), missed_calls_week: String(v('missed')),
+      yearly_leak: String(Math.round(leak)), yearly_gain: String(Math.round(total)), cash_freed: String(Math.round(cash)), first_year_net: String(Math.round(net))
+    };
+    lastSummary = [
+      (biz || 'Your business') + ': money-leak report',
+      '',
+      'What these leaks cost today: ' + money(leak) + ' per year',
+      'Could get back (' + label + ' scenario): ' + money(total) + ' per year',
+      rows.map(function (r) { return '  - ' + r.name + ': ' + money(r.val) + '/yr (' + r.tool + ')'; }).join('\n'),
+      'One-time cash freed from overdue balances: ' + money(cash),
+      'Payback on the build: ' + (payback === null ? 'not reached at these numbers' : (payback < 1 ? 'under 1 month' : (Math.round(payback * 10) / 10) + ' months')),
+      'First-year net after build and support: ' + money(net),
+      '',
+      'Next step: a $500 automation audit, credited toward the build, to confirm these numbers and map the plan.'
+    ].join('\n');
+  }
+
+  document.querySelectorAll('[data-preset]').forEach(function (b) { b.addEventListener('click', function () { applyPreset(b.dataset.preset); }); });
+  ['a-hours', 'a-writeoffs', 'a-overdue', 'a-quotes', 'a-calls'].forEach(function (id) {
+    $(id).addEventListener('input', function () { current = 'custom'; document.querySelectorAll('[data-preset]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); calc(); });
+  });
+  document.querySelectorAll('#calc input').forEach(function (el) { if (!/^a-/.test(el.id)) el.addEventListener('input', calc); });
+  $('biz').addEventListener('input', calc);
+
+  $('copy').addEventListener('click', function () {
+    var s = $('copy-status'), ta = $('recap');
+    var fallback = function () { ta.value = lastSummary; ta.hidden = false; ta.focus(); ta.select(); s.textContent = 'Select all and copy the text below.'; s.hidden = false; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastSummary).then(function () { s.textContent = 'Copied.'; s.hidden = false; ta.hidden = true; }, fallback);
+    } else { fallback(); }
+    if (lead) send(Object.assign({ event: 'report', source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() }, snapshot));
+  });
+
+  /* Gate */
+  function unlock(focus) {
+    $('stage').classList.remove('locked');
+    $('calc').removeAttribute('inert');
+    $('gate').hidden = true;
+    if (focus) { var h = $('hours'); if (h) h.focus({ preventScroll: true }); window.scrollTo({ top: 0 }); }
+  }
+  function digits(s) { return (s || '').replace(/\D/g, ''); }
+  function setErr(msg, field) {
+    $('g-err').textContent = msg || '';
+    ['g-name', 'g-email', 'g-phone'].forEach(function (id) { $(id).setAttribute('aria-invalid', 'false'); });
+    if (field) { $(field).setAttribute('aria-invalid', 'true'); $(field).focus(); }
+  }
+
+  $('gate-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = $('g-name').value.trim(), email = $('g-email').value.trim(), phone = $('g-phone').value.trim();
+    if ($('g-site').value) { return; }
+    if (name.length < 2) return setErr('Enter your name.', 'g-name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return setErr('Enter a valid email address.', 'g-email');
+    var d = digits(phone);
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    if (d.length !== 10) return setErr('Enter a 10-digit US phone number.', 'g-phone');
+    if (!$('g-consent').checked) { setErr('Check the box to agree to be contacted.', 'g-consent'); return; }
+    setErr('');
+    lead = { name: name, email: email, phone: '+1' + d };
+    store('cw_lead', JSON.stringify(lead));
+    var btn = $('g-submit'); btn.disabled = true; btn.textContent = 'Opening…';
+    send(Object.assign({
+      event: 'lead', source: 'Leak Calculator', name: name, email: email, phone: lead.phone,
+      consent: 'yes', consent_text: CONSENT_TEXT, consent_time: new Date().toISOString(), page: location.origin + location.pathname
+    }, params()));
+    setTimeout(function () { unlock(true); }, 350);
+  });
+
+  $('g-consent').addEventListener('change', function () { if (this.checked) setErr(''); });
+
+  // Returning visitors who already left their details skip the gate on this browser.
+  try { var saved = JSON.parse(load('cw_lead') || 'null'); if (saved && saved.email) { lead = saved; unlock(false); } } catch (e) {}
+
+  applyPreset('cautious');
+})();
+</script>
+</body>
+</html>
