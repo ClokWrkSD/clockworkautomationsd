@@ -129,6 +129,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-stretch: 125%; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; }
 .brand svg { width: 30px; height: 30px; flex: none; }
+.brand-sub { text-transform: none; color: var(--brass); letter-spacing: 0.02em; }
 .nav { display: flex; align-items: center; gap: 26px; font-size: 15px; }
 .nav a { text-decoration: none; color: var(--muted); }
 .nav a:hover { color: var(--ink); }
@@ -303,7 +304,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Clockwork Automation home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 5.5v2.6M16 23.9v2.6M5.5 16h2.6M23.9 16h2.6"/></g><path d="M16 16V9.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 16l5 3" stroke="var(--brass)" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="var(--brass)"/></svg>
-      Clockwork
+      <span>Clockwork <span class="brand-sub">automation</span></span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#services">What we build</a>
