@@ -84,7 +84,7 @@
   --band: #101a2c;
   --band-ink: #edf1f6;
   --band-muted: #a7b2c4;
-  --good: #1f7a55;
+  --good: #1f7a55; --bad: #b3261e;
   --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --f-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -95,13 +95,13 @@
   :root:not([data-theme="light"]) {
     --paper: #0b111d; --surface: #121a2a; --ink: #e8edf4; --muted: #9aa7ba; --line: #233049; --field-line: #6f7f9c;
     --brass: #e0a94b; --brass-ink: #ebbb68; --brass-wash: #2a2416; --band: #16203a; --band-ink: #edf1f6;
-    --band-muted: #a7b2c4; --good: #4cc391; color-scheme: dark;
+    --band-muted: #a7b2c4; --good: #4cc391; --bad: #ff8a80; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #0b111d; --surface: #121a2a; --ink: #e8edf4; --muted: #9aa7ba; --line: #233049; --field-line: #6f7f9c;
   --brass: #e0a94b; --brass-ink: #ebbb68; --brass-wash: #2a2416; --band: #16203a; --band-ink: #edf1f6;
-  --band-muted: #a7b2c4; --good: #4cc391; color-scheme: dark;
+  --band-muted: #a7b2c4; --good: #4cc391; --bad: #ff8a80; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -284,8 +284,19 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .form .field input, .form .field textarea { width: 100%; border: 1px solid var(--field-line); background: var(--paper); color: var(--ink); border-radius: 8px; padding: 12px; font: 16px var(--f-body); }
 .form .field textarea { min-height: 96px; resize: vertical; }
 .form-note { font-size: 14px; color: var(--muted); }
-.form-open { display: none; width: 100%; border-color: var(--field-line); }
-@media (max-width: 600px) { .form iframe { display: none; } .form-open { display: inline-flex; } }
+.contact-form { display: grid; gap: 16px; }
+.contact-form .field { min-width: 0; }
+.contact-form textarea { min-height: 112px; resize: vertical; }
+.contact-form .req { color: var(--bad); }
+.field-err { color: var(--bad); font-size: 14px; min-height: 0; }
+.field-err:empty { display: none; }
+.contact-form [aria-invalid="true"] { border-color: var(--bad); }
+.contact-form .btn { width: 100%; }
+.contact-form .btn[disabled] { opacity: .65; cursor: progress; }
+.form-status:empty { display: none; }
+.form-status.is-error { color: var(--bad); }
+.form-status:focus { outline: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-status { font-size: 15px; font-weight: 600; color: var(--good); }
 .book-points { margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; color: var(--band-muted); }
 .book-points li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; }
@@ -630,8 +641,16 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="form" id="book-form">
         <a class="btn btn-primary" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1Mm-5VaFmechJsknUkRKHrPNxDYxwu2I8Pr5WTZRNSMJzSY4w3Lagn0c-ZSu9RTyxVlRXeceOq" target="_blank" rel="noopener" style="width:100%;justify-content:center">Pick a time for your free call</a>
         <p class="form-note" style="text-align:center;margin:4px 0 0">Or tell us about your business and we'll reach out:</p>
-        <iframe src="https://forms.monday.com/forms/embed/4fab27cc71d2dfadbc544ce716647869?r=use1" title="Contact Clockwork Automation" loading="lazy" style="width:100%;height:760px;border:0;border-radius:12px;background:#fff"></iframe>
-        <a class="btn btn-ghost form-open" href="https://forms.monday.com/forms/4fab27cc71d2dfadbc544ce716647869?r=use1" target="_blank" rel="noopener">Open the contact form<span class="sr-only"> (opens in a new tab)</span></a>
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="field"><label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err"><span class="field-err" id="f-name-err"></span></div>
+          <div class="field"><label for="f-business">Business name <span class="req" aria-hidden="true">*</span></label><input id="f-business" name="business" type="text" autocomplete="organization" required aria-describedby="f-business-err"><span class="field-err" id="f-business-err"></span></div>
+          <div class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="f-email-err"><span class="field-err" id="f-email-err"></span></div>
+          <div class="field"><label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(619) 555-0123" required aria-describedby="f-phone-err"><span class="field-err" id="f-phone-err"></span></div>
+          <div class="field"><label for="f-message">What's eating your week?</label><span class="hint" id="f-message-hint">Late payments, quotes going quiet, missed calls, anything else.</span><textarea id="f-message" name="message" rows="4" maxlength="1000" aria-describedby="f-message-hint"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="f-site">Leave this field empty</label><input id="f-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="btn btn-primary" type="submit" id="f-submit">Send message</button>
+          <p class="form-status" id="f-status" role="status" tabindex="-1"></p>
+        </form>
         <p class="form-note">Your details are used only to reply to you. See our <a href="/privacy/">Privacy Policy</a>. Prefer to talk? Call or text <a href="tel:+16194892289">(619) 489-2289</a> or email clockworkautomationsd@gmail.com</p>
       </div>
     </div>
@@ -693,5 +712,48 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 })();
 </script>
 
+<script>
+(function () {
+  var ENDPOINT = 'https://hook.us2.make.com/q76m03flqlbv9levodiletjc6mjj0bqg';
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var $ = function (id) { return document.getElementById(id); };
+  var status = $('f-status'), btn = $('f-submit');
+  var clean = function (t, max) { return String(t || '').replace(/[\u0000-\u001f"\\]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max); };
+  function setErr(id, msg) {
+    var input = $(id), err = $(id + '-err');
+    if (err) err.textContent = msg || '';
+    if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+  }
+  ['f-name', 'f-business', 'f-email', 'f-phone'].forEach(function (id) { $(id).addEventListener('input', function () { setErr(id, ''); }); });
+  function say(msg, isError) { status.textContent = msg; status.className = 'form-status' + (isError ? ' is-error' : ''); if (msg) status.focus(); }
+  function utm() {
+    var out = {}, q = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (q.get(k)) out[k] = clean(q.get(k), 80); });
+    return out;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if ($('f-site').value) return;
+    var name = clean($('f-name').value, 100), business = clean($('f-business').value, 120), email = $('f-email').value.trim().slice(0, 200), message = clean($('f-message').value, 1000);
+    var d = $('f-phone').value.replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    var bad = null;
+    if (name.length < 2) { setErr('f-name', 'Enter your name.'); bad = bad || 'f-name'; } else setErr('f-name', '');
+    if (business.length < 2) { setErr('f-business', 'Enter your business name.'); bad = bad || 'f-business'; } else setErr('f-business', '');
+    if (!/^[^\s@"\\]+@[^\s@"\\]+\.[^\s@"\\]{2,}$/.test(email)) { setErr('f-email', 'Enter a valid email address.'); bad = bad || 'f-email'; } else setErr('f-email', '');
+    if (d.length !== 10) { setErr('f-phone', 'Enter a 10-digit US phone number.'); bad = bad || 'f-phone'; } else setErr('f-phone', '');
+    if (bad) { say('', false); $(bad).focus(); return; }
+    btn.disabled = true; btn.textContent = 'Sending\u2026'; say('', false);
+    var body = new URLSearchParams(Object.assign({ event: 'contact', source: 'Website contact form', name: name, business: business, email: email, phone: '+1' + d, message: message, page: location.origin + location.pathname, submitted_at: new Date().toISOString() }, utm())).toString();
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 12000) : null;
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error('bad status'); form.reset(); say('Thanks. We got your message and will reply within one business day.', false); })
+      .catch(function () { say('We could not confirm that your message went through. Please call or text (619) 489-2289 or email clockworkautomationsd@gmail.com.', true); })
+      .then(function () { if (timer) clearTimeout(timer); btn.disabled = false; btn.textContent = 'Send message'; });
+  });
+})();
+</script>
 </body>
 </html>
