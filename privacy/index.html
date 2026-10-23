@@ -11,20 +11,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..800&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--paper:#f3f5f8;--surface:#fff;--ink:#101a2c;--muted:#536077;--line:#d9dfe8;--brass:#a9741b;--f-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;--f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b111d;--surface:#121a2a;--ink:#e8edf4;--muted:#9aa7ba;--line:#233049;--brass:#d89a3a}}
+:root{--paper:#f3f5f8;--surface:#fff;--ink:#101a2c;--muted:#536077;--line:#d9dfe8;--brass:#a9741b;--brass-ink:#7f560f;--f-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;--f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b111d;--surface:#121a2a;--ink:#e8edf4;--muted:#9aa7ba;--line:#233049;--brass:#e0a94b;--brass-ink:#ebbb68}}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--f-body)}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px}
 header{padding-block:22px;border-bottom:1px solid var(--line)}header a{color:var(--ink);font:800 20px var(--f-display);text-decoration:none}
 h1{font:800 clamp(30px,5vw,42px)/1.1 var(--f-display);margin:40px 0 6px}h2{font:700 22px var(--f-display);margin:34px 0 8px}
-p,li{color:var(--ink)}.meta{color:var(--muted);margin:0 0 24px}a{color:var(--brass)}
+p,li{color:var(--ink)}.meta{color:var(--muted);margin:0 0 24px}a{color:var(--brass-ink);text-decoration:underline;text-underline-offset:2px}html{scroll-padding-top:88px}
+a:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;left:16px;top:-72px;z-index:100;padding:10px 16px;border-radius:8px;background:var(--ink);color:var(--paper);font-weight:600;text-decoration:none}.skip-link:focus{top:12px}
+header a{text-decoration:none}
+footer a{color:inherit}
 footer{margin-top:56px;padding-block:32px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;max-width:760px}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header><div class="wrap"><a href="/">Clockwork Automation</a></div></header>
-<main class="wrap">
+<main class="wrap" id="main">
 <h1>Privacy Policy</h1>
 <p class="meta">Effective date: October 22, 2026</p>
 <p>Clockwork Automation ("we," "us") provides business automation services in San Diego County, California. This policy explains what information we collect through clockworkautomationsd.com, how we use it, and your choices.</p>
