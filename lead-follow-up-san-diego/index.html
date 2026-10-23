@@ -147,7 +147,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .tier .tag { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brass-ink); }
 .tier-premium { background: var(--band); color: var(--band-ink); border-color: var(--band); }
 .tier-premium p, .tier-premium ul, .tier-premium .price span { color: var(--band-muted); }
-.tier-premium .tag { color: var(--brass); }
+.tier-premium .tag { color: #c8942f; }
 .sub-tiers { display: grid; gap: 10px; }
 .sub-tiers div { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 10px; font-size: 15px; }
 .sub-tiers b { font-family: var(--f-mono); font-weight: 500; white-space: nowrap; }
@@ -155,7 +155,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Case study band */
 .band { background: var(--band); color: var(--band-ink); }
-.band .eyebrow { color: var(--brass); }
+.band .eyebrow { color: #c8942f; }
 .band .lede { color: var(--band-muted); }
 .case { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 72px); align-items: start; }
 .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(237, 241, 246, .14); border-radius: var(--radius); overflow: hidden; }
@@ -454,7 +454,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <a class="btn btn-primary" href="../index.html#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
   </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="../index.html">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="../index.html">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
 <script>
 (function () {
   var num = function (id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v > 0 ? v : 0; };
@@ -469,9 +469,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   var ticks = Array.prototype.slice.call(document.querySelectorAll('#ticks .tick'));
   if (!reduce && ticks.length) {
     var i = 0;
-    setInterval(function () {
-      i = (i + 1) % (ticks.length + 1);
-      ticks.forEach(function (t, k) { t.classList.toggle('is-on', k < i || i === 0 && k === 0); });
+    var tickTimer = setInterval(function () {
+      i = i + 1;
+      ticks.forEach(function (t, k) { t.classList.toggle('is-on', k < i); });
+      if (i >= ticks.length) { clearInterval(tickTimer); }  /* play once, then stop (WCAG 2.2.2) */
     }, 1400);
   } else {
     ticks.forEach(function (t) { t.classList.add('is-on'); });

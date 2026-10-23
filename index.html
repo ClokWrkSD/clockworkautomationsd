@@ -130,7 +130,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-stretch: 125%; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; }
 .brand svg { width: 30px; height: 30px; flex: none; }
 .brand-text { display: grid; width: max-content; line-height: 1.05; }
-.brand-sub { display: block; width: 0; min-width: 100%; white-space: nowrap; text-transform: none; color: var(--brass); font-size: 0.8em; letter-spacing: 0.18em; }
+.brand-sub { display: block; width: 0; min-width: 100%; white-space: nowrap; text-transform: none; color: var(--brass-ink); font-size: 0.8em; letter-spacing: 0.18em; }
 .nav { display: flex; align-items: center; gap: 26px; font-size: 15px; }
 .nav a { text-decoration: none; color: var(--muted); }
 .nav a:hover { color: var(--ink); }
@@ -213,7 +213,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Case study band */
 .band { background: var(--band); color: var(--band-ink); }
-.band .eyebrow { color: var(--brass); }
+.band .eyebrow { color: #c8942f; }
 .band .lede { color: var(--band-muted); }
 .case { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 72px); align-items: start; }
 .compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(237, 241, 246, .14); border-radius: var(--radius); overflow: hidden; }
@@ -661,7 +661,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <div class="wrap">
     <span>© 2026 Clockwork Automation · San Diego, California · <a href="tel:+16194892289">(619) 489-2289</a> · clockworkautomationsd@gmail.com · @clokwrksd</span>
     <span><a href="collections-automation-property-managers-san-diego/index.html">Property managers</a> · <a href="missed-call-text-back-hvac-plumbing-san-diego/index.html">HVAC and plumbing</a> · <a href="quote-follow-up-contractors-landscapers-san-diego/index.html">Contractors and landscapers</a> · <a href="rebooking-review-requests-cleaning-med-spa-san-diego/index.html">Cleaning and med spas</a> · <a href="lead-follow-up-san-diego/index.html">Lead follow-up</a> · <a href="ai-phone-agent-san-diego/index.html">AI phone agents</a> · <a href="fractional-operations-san-diego/index.html">Fractional operations</a></span>
-  <span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a></span></div>
+  <span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div>
 </footer>
 
 <script>
@@ -687,9 +687,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   var ticks = Array.prototype.slice.call(document.querySelectorAll('#ticks .tick'));
   if (!reduce && ticks.length) {
     var i = 0;
-    setInterval(function () {
-      i = (i + 1) % (ticks.length + 1);
-      ticks.forEach(function (t, k) { t.classList.toggle('is-on', k < i || i === 0 && k === 0); });
+    var tickTimer = setInterval(function () {
+      i = i + 1;
+      ticks.forEach(function (t, k) { t.classList.toggle('is-on', k < i); });
+      if (i >= ticks.length) { clearInterval(tickTimer); }  /* play once, then stop (WCAG 2.2.2) */
     }, 1400);
   } else {
     ticks.forEach(function (t) { t.classList.add('is-on'); });
