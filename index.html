@@ -230,7 +230,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .step { border-top: 2px solid var(--ink); padding-top: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
 .step-num { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
 .step .price { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: 26px; }
-.step .price span { font-family: var(--f-body); font-size: 14px; font-weight: 500; color: var(--muted); }
+.step .price span { display: block; margin-top: 4px; font-family: var(--f-body); font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--muted); }
 .step p { color: var(--muted); font-size: 15px; }
 .step.highlight { border-top-color: var(--brass); }
 .step.highlight .price { color: var(--brass-ink); }
