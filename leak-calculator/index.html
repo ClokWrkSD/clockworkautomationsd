@@ -55,7 +55,7 @@ h1 { font-family: var(--f-display); font-stretch: 120%; font-weight: 800; font-s
 .field label { font-size: 14px; font-weight: 600; }
 .field .ask { font-size: 12.5px; color: var(--muted); }
 .in { display: flex; align-items: center; border: 1px solid var(--field-line); border-radius: 8px; background: var(--paper); }
-.in:focus-within { border-color: var(--brass); }
+.in:focus-within { border-color: var(--brass); outline: 2px solid var(--brass); outline-offset: 2px; }
 .in span { padding: 0 10px; font-family: var(--f-mono); font-size: 14px; color: var(--muted); }
 .in input { flex: 1; min-width: 0; border: 0; background: transparent; font: 500 17px var(--f-mono); color: var(--ink); padding: 10px 10px 10px 0; font-variant-numeric: tabular-nums; outline: none; }
 .group-label { grid-column: 1 / -1; font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brass-ink); padding-top: 6px; border-top: 1px dashed var(--line); margin-top: 4px; }
@@ -111,7 +111,7 @@ html { scroll-padding-top: 88px; }
 .gate .btn { width: 100%; margin-top: 16px; padding: 14px 16px; font-size: 16px; }
 .gate .btn[disabled] { opacity: .6; cursor: progress; }
 .err { color: var(--bad); font-size: 13px; min-height: 1.2em; margin: 10px 0 0; }
-.gate .fine { font-size: 11px; color: var(--muted); margin: 10px 0 0; }
+.gate .fine { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
 @media (max-width: 560px) { .gate { padding: 20px; top: 12px; } .stage.locked .grid { max-height: 900px; } }
 @media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
 </style>
@@ -224,7 +224,7 @@ html { scroll-padding-top: 88px; }
       </div>
       <div class="consent">
         <input id="g-consent" name="consent" type="checkbox" required>
-        <label for="g-consent">By checking this box and clicking the button, I agree that Clockwork Automation may contact me by phone call, text message and email at the number and address above about my report and about its services, including marketing, and that calls and texts may use automated technology. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply STOP to any text to opt out, or HELP for help. Mobile information is not shared with third parties or affiliates for marketing or promotional purposes. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</label>
+        <label for="g-consent">By checking this box and clicking the button, I agree that Clockwork Automation may contact me by phone call, text message and email at the number and address above about my report and about its services, including marketing, and that calls and texts may use automated technology. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply STOP to any text to opt out, or HELP for help. Mobile information is not shared with third parties or affiliates for marketing or promotional purposes. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a>.</label>
       </div>
       <p class="err" id="g-err" role="alert"></p>
       <button class="btn" type="submit" id="g-submit">How much am I losing?</button>
