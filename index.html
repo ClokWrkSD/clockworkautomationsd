@@ -25,7 +25,7 @@
       "areaServed": {"@type": "AdministrativeArea", "name": "San Diego County, California"},
       "address": {"@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US"},
       "priceRange": "$$",
-      "email": "clockworkautomationsd@gmail.com",
+      "email": "jeremy@clockworkautomationsd.com",
       "telephone": "+1-619-489-2289",
       "knowsAbout": ["Business process automation", "Accounts receivable automation", "Collections workflows", "Lead follow-up automation", "AI automation for small business", "KPI dashboards"],
       "hasOfferCatalog": {
@@ -650,7 +650,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <button class="btn btn-primary" type="submit" id="f-submit">Send message</button>
           <p class="form-status" id="f-status" role="status" tabindex="-1"></p>
         </form>
-        <p class="form-note">Your details are used only to reply to you. See our <a href="/privacy/">Privacy Policy</a>. Prefer to talk? Call or text <a href="tel:+16194892289">(619) 489-2289</a> or email clockworkautomationsd@gmail.com</p>
+        <p class="form-note">Your details are used only to reply to you. See our <a href="/privacy/">Privacy Policy</a>. Prefer to talk? Call or text <a href="tel:+16194892289">(619) 489-2289</a> or email jeremy@clockworkautomationsd.com</p>
       </div>
     </div>
   </section>
@@ -658,7 +658,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Clockwork Automation · San Diego, California · <a href="tel:+16194892289">(619) 489-2289</a> · clockworkautomationsd@gmail.com · @clokwrksd</span>
+    <span>© 2026 Clockwork Automation · San Diego, California · <a href="tel:+16194892289">(619) 489-2289</a> · jeremy@clockworkautomationsd.com · @clokwrksd</span>
     <span><a href="collections-automation-property-managers-san-diego/index.html">Property managers</a> · <a href="missed-call-text-back-hvac-plumbing-san-diego/index.html">HVAC and plumbing</a> · <a href="quote-follow-up-contractors-landscapers-san-diego/index.html">Contractors and landscapers</a> · <a href="rebooking-review-requests-cleaning-med-spa-san-diego/index.html">Cleaning and med spas</a> · <a href="lead-follow-up-san-diego/index.html">Lead follow-up</a> · <a href="ai-phone-agent-san-diego/index.html">AI phone agents</a> · <a href="fractional-operations-san-diego/index.html">Fractional operations</a></span>
   <span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div>
 </footer>
@@ -750,7 +750,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     var timer = ctl ? setTimeout(function () { ctl.abort(); }, 12000) : null;
     fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: ctl ? ctl.signal : undefined })
       .then(function (r) { if (!r.ok) throw new Error('bad status'); form.reset(); say('Thanks. We got your message and will reply within one business day.', false); })
-      .catch(function () { say('We could not confirm that your message went through. Please call or text (619) 489-2289 or email clockworkautomationsd@gmail.com.', true); })
+      .catch(function () { say('We could not confirm that your message went through. Please call or text (619) 489-2289 or email jeremy@clockworkautomationsd.com.', true); })
       .then(function () { if (timer) clearTimeout(timer); btn.disabled = false; btn.textContent = 'Send message'; });
   });
 })();
