@@ -259,27 +259,27 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../index.html" aria-label="Clockwork Automation home">
+    <a class="brand" href="/" aria-label="Clockwork Automation home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 5.5v2.6M16 23.9v2.6M5.5 16h2.6M23.9 16h2.6"/></g><path d="M16 16V9.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 16l5 3" stroke="var(--brass)" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="var(--brass)"/></svg>
       Clockwork
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="../index.html#services">What we build</a>
-      <a href="../index.html#results">Results</a>
-      <a href="../index.html#how">How it works</a>
-      <a href="../index.html#ongoing">Fractional Ops</a>
-      <a href="../index.html#faq">FAQ</a>
-      <a class="btn btn-primary" href="../index.html#book">Book a free call</a>
+      <a href="/#services">What we build</a>
+      <a href="/#results">Results</a>
+      <a href="/#how">How it works</a>
+      <a href="/#ongoing">Fractional Ops</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn btn-primary" href="/#book">Book a free call</a>
     </nav>
   </div>
 </header>
 <main id="main">
   <section class="page-hero"><div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / Contractors and landscapers</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Contractors and landscapers</nav>
     <p class="eyebrow">Contractors and landscapers · San Diego County</p>
     <h1>Win the quotes you already did the work for.</h1>
     <p class="answer-first">Clockwork Automation builds quote follow-up that tracks every open bid and reminds the customer, and you, until there&#x27;s a yes or a no. San Diego contractors and landscapers turn more of their existing estimates into signed jobs without chasing anyone by hand.</p>
-    <div class="hero-ctas"><a class="btn btn-primary" href="../index.html#book">Let's find your biggest leak</a><a class="btn btn-ghost" href="#calculator">Run your numbers</a></div>
+    <div class="hero-ctas"><a class="btn btn-primary" href="/#book">Let's find your biggest leak</a><a class="btn btn-ghost" href="#calculator">Run your numbers</a></div>
   </div></section>
   <section class="section" style="padding-top:0"><div class="wrap split">
     <div><p class="eyebrow">Sound familiar?</p><h2 style="margin-top:14px">Where the money slips away</h2><ul class="pains-list"><li>You drive out, measure, write the quote and then hear nothing</li><li>Follow-up happens only when someone remembers</li><li>Big bids sit open for weeks with no next step</li><li>There&#x27;s no list of every open quote and its value</li></ul></div>
@@ -291,20 +291,20 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div></section>
   <section class="section" id="calculator" style="padding-top:0"><div class="wrap">
     <div class="section-head"><p class="eyebrow">Quick math</p><h2>What is this costing you?</h2></div>
-    <div class="calc"><form class="calc-in" onsubmit="return false"><p class="lede" style="font-size:15px">Use your own numbers. Nothing you type leaves this page.</p><div class="field"><label for="c-q">Quotes that go quiet each month</label><div class="input-row"><span>#</span><input id="c-q" type="number" inputmode="decimal" min="0" value="10"></div></div><div class="field"><label for="c-j">Average job value</label><div class="input-row"><span>$</span><input id="c-j" type="number" inputmode="decimal" min="0" value="5000"></div></div><div class="field"><label for="c-w">Share follow-up could win back</label><div class="input-row"><span>%</span><input id="c-w" type="number" inputmode="decimal" min="0" value="10"></div></div></form><div class="calc-out" aria-live="polite"><div class="readout"><span class="k">Value of quotes going quiet, per year</span><span class="v" id="o-0">$0</span><p>Quiet quotes × job value × 12 months.</p></div><div class="readout"><span class="k">Revenue from winning back a share</span><span class="v" id="o-1">$0</span><p>At the share you entered. Change it to see a cautious or strong case.</p></div><a class="btn btn-primary" href="../index.html#book">Let's find your biggest leak</a></div></div>
+    <div class="calc"><form class="calc-in" onsubmit="return false"><p class="lede" style="font-size:15px">Use your own numbers. Nothing you type leaves this page.</p><div class="field"><label for="c-q">Quotes that go quiet each month</label><div class="input-row"><span>#</span><input id="c-q" type="number" inputmode="decimal" min="0" value="10"></div></div><div class="field"><label for="c-j">Average job value</label><div class="input-row"><span>$</span><input id="c-j" type="number" inputmode="decimal" min="0" value="5000"></div></div><div class="field"><label for="c-w">Share follow-up could win back</label><div class="input-row"><span>%</span><input id="c-w" type="number" inputmode="decimal" min="0" value="10"></div></div></form><div class="calc-out" aria-live="polite"><div class="readout"><span class="k">Value of quotes going quiet, per year</span><span class="v" id="o-0">$0</span><p>Quiet quotes × job value × 12 months.</p></div><div class="readout"><span class="k">Revenue from winning back a share</span><span class="v" id="o-1">$0</span><p>At the share you entered. Change it to see a cautious or strong case.</p></div><a class="btn btn-primary" href="/#book">Let's find your biggest leak</a></div></div>
 <script>(function(){var ks=["q", "j", "w"],ex=["q*j*12","q*j*12*(w/100)"],cnt=[false, false];function g(k){var v=parseFloat(document.getElementById('c-'+k).value);return isFinite(v)&&v>0?v:0;}function run(){var vals={};ks.forEach(function(k){vals[k]=g(k);});ex.forEach(function(e,i){var r=Function.apply(null,ks.concat(['return '+e])).apply(null,ks.map(function(k){return vals[k];}));document.getElementById('o-'+i).textContent=cnt[i]?Math.round(r).toLocaleString('en-US'):'$'+Math.round(r).toLocaleString('en-US');});}ks.forEach(function(k){document.getElementById('c-'+k).addEventListener('input',run);});run();})();</script>
   </div></section>
   <section class="section" style="padding-top:0"><div class="wrap">
     <div class="section-head"><p class="eyebrow">Questions owners ask</p><h2>Frequently asked questions</h2></div>
     <div class="faq"><details open><summary>How do I follow up on construction or landscaping quotes automatically?</summary><p class="answer">Clockwork Automation sets up a follow-up sequence for every quote you send. Customers get friendly reminders on a schedule until they reply, and you get a daily list of bids that need a personal call.</p></details><details><summary>How many times should I follow up on a quote?</summary><p class="answer">Most customers who go quiet are busy, not saying no. Several follow-ups over a few weeks, each one useful and short, is common. We set the timing and wording with you so it fits your customers.</p></details><details><summary>Will this work with my estimating software?</summary><p class="answer">In most cases. We connect to your estimating or accounting software, or import quotes into a CRM (customer relationship manager) you own. The audit confirms the best setup.</p></details><details><summary>How much does it cost?</summary><p class="answer">The first call is free. An automation audit is $500 and is credited toward the build. The build is quoted at a fixed price after the audit, and monthly support starts at $500 per month.</p></details><details><summary>Will customers feel spammed?</summary><p class="answer">No message goes out until you approve its wording, follow-ups stop the moment a customer replies, and every message includes an easy way to opt out.</p></details></div>
     <p class="eyebrow" style="margin-top:40px">Other ways we help</p>
-    <div class="related"><a href="../lead-follow-up-san-diego/index.html">Lead follow-up</a><a href="../ai-phone-agent-san-diego/index.html">AI phone agents</a><a href="../collections-automation-property-managers-san-diego/index.html">Property managers</a><a href="../missed-call-text-back-hvac-plumbing-san-diego/index.html">HVAC and plumbing</a><a href="../rebooking-review-requests-cleaning-med-spa-san-diego/index.html">Cleaning and med spas</a><a href="../fractional-operations-san-diego/index.html">Fractional operations</a></div>
+    <div class="related"><a href="/lead-follow-up-san-diego/">Lead follow-up</a><a href="/ai-phone-agent-san-diego/">AI phone agents</a><a href="/collections-automation-property-managers-san-diego/">Property managers</a><a href="/missed-call-text-back-hvac-plumbing-san-diego/">HVAC and plumbing</a><a href="/rebooking-review-requests-cleaning-med-spa-san-diego/">Cleaning and med spas</a><a href="/fractional-operations-san-diego/">Fractional operations</a></div>
   </div></section>
   <section class="section band cta-band"><div class="wrap">
     <div><p class="eyebrow">Free 30-minute call</p><h2 style="margin-top:12px">Let's find your biggest leak.</h2></div>
-    <a class="btn btn-primary" href="../index.html#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
+    <a class="btn btn-primary" href="/#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
   </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="../index.html">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="/">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
 </body>
 </html>
