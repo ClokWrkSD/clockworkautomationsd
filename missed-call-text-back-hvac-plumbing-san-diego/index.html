@@ -259,27 +259,27 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../index.html" aria-label="Clockwork Automation home">
+    <a class="brand" href="/" aria-label="Clockwork Automation home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 5.5v2.6M16 23.9v2.6M5.5 16h2.6M23.9 16h2.6"/></g><path d="M16 16V9.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 16l5 3" stroke="var(--brass)" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="var(--brass)"/></svg>
       Clockwork
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="../index.html#services">What we build</a>
-      <a href="../index.html#results">Results</a>
-      <a href="../index.html#how">How it works</a>
-      <a href="../index.html#ongoing">Fractional Ops</a>
-      <a href="../index.html#faq">FAQ</a>
-      <a class="btn btn-primary" href="../index.html#book">Book a free call</a>
+      <a href="/#services">What we build</a>
+      <a href="/#results">Results</a>
+      <a href="/#how">How it works</a>
+      <a href="/#ongoing">Fractional Ops</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn btn-primary" href="/#book">Book a free call</a>
     </nav>
   </div>
 </header>
 <main id="main">
   <section class="page-hero"><div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / HVAC and plumbing</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / HVAC and plumbing</nav>
     <p class="eyebrow">HVAC and plumbing · San Diego County</p>
     <h1>Turn missed calls into booked jobs.</h1>
     <p class="answer-first">Clockwork Automation connects your business phones so every missed call gets an instant text back, every lead lands in one list, and follow-up keeps going until the customer books. San Diego HVAC and plumbing companies stop losing jobs to whoever answers first.</p>
-    <div class="hero-ctas"><a class="btn btn-primary" href="../index.html#book">Let's find your biggest leak</a><a class="btn btn-ghost" href="#calculator">Run your numbers</a></div>
+    <div class="hero-ctas"><a class="btn btn-primary" href="/#book">Let's find your biggest leak</a><a class="btn btn-ghost" href="#calculator">Run your numbers</a></div>
   </div></section>
   <section class="section" style="padding-top:0"><div class="wrap split">
     <div><p class="eyebrow">Sound familiar?</p><h2 style="margin-top:14px">Where the money slips away</h2><ul class="pains-list"><li>In peak season the phones ring faster than anyone can answer</li><li>After-hours calls go to voicemail and then to a competitor</li><li>Leads live on one person&#x27;s cell phone</li><li>Nobody follows up on the estimate after the first visit</li></ul></div>
@@ -291,20 +291,20 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div></section>
   <section class="section" id="calculator" style="padding-top:0"><div class="wrap">
     <div class="section-head"><p class="eyebrow">Quick math</p><h2>What is this costing you?</h2></div>
-    <div class="calc"><form class="calc-in" onsubmit="return false"><p class="lede" style="font-size:15px">Use your own numbers. Nothing you type leaves this page.</p><div class="field"><label for="c-m">Missed calls a week</label><div class="input-row"><span>#</span><input id="c-m" type="number" inputmode="decimal" min="0" value="15"></div></div><div class="field"><label for="c-b">Share that would have booked</label><div class="input-row"><span>%</span><input id="c-b" type="number" inputmode="decimal" min="0" value="30"></div></div><div class="field"><label for="c-j">Average job value</label><div class="input-row"><span>$</span><input id="c-j" type="number" inputmode="decimal" min="0" value="450"></div></div></form><div class="calc-out" aria-live="polite"><div class="readout"><span class="k">Revenue at risk from missed calls, per year</span><span class="v" id="o-0">$0</span><p>Missed calls × booking rate × job value × 50 weeks.</p></div><div class="readout"><span class="k">Jobs at risk, per year</span><span class="v" id="o-1">$0</span><p>Calls that likely would have booked.</p></div><a class="btn btn-primary" href="../index.html#book">Let's find your biggest leak</a></div></div>
+    <div class="calc"><form class="calc-in" onsubmit="return false"><p class="lede" style="font-size:15px">Use your own numbers. Nothing you type leaves this page.</p><div class="field"><label for="c-m">Missed calls a week</label><div class="input-row"><span>#</span><input id="c-m" type="number" inputmode="decimal" min="0" value="15"></div></div><div class="field"><label for="c-b">Share that would have booked</label><div class="input-row"><span>%</span><input id="c-b" type="number" inputmode="decimal" min="0" value="30"></div></div><div class="field"><label for="c-j">Average job value</label><div class="input-row"><span>$</span><input id="c-j" type="number" inputmode="decimal" min="0" value="450"></div></div></form><div class="calc-out" aria-live="polite"><div class="readout"><span class="k">Revenue at risk from missed calls, per year</span><span class="v" id="o-0">$0</span><p>Missed calls × booking rate × job value × 50 weeks.</p></div><div class="readout"><span class="k">Jobs at risk, per year</span><span class="v" id="o-1">$0</span><p>Calls that likely would have booked.</p></div><a class="btn btn-primary" href="/#book">Let's find your biggest leak</a></div></div>
 <script>(function(){var ks=["m", "b", "j"],ex=["m*(b/100)*j*50","m*(b/100)*50"],cnt=[false, true];function g(k){var v=parseFloat(document.getElementById('c-'+k).value);return isFinite(v)&&v>0?v:0;}function run(){var vals={};ks.forEach(function(k){vals[k]=g(k);});ex.forEach(function(e,i){var r=Function.apply(null,ks.concat(['return '+e])).apply(null,ks.map(function(k){return vals[k];}));document.getElementById('o-'+i).textContent=cnt[i]?Math.round(r).toLocaleString('en-US'):'$'+Math.round(r).toLocaleString('en-US');});}ks.forEach(function(k){document.getElementById('c-'+k).addEventListener('input',run);});run();})();</script>
   </div></section>
   <section class="section" style="padding-top:0"><div class="wrap">
     <div class="section-head"><p class="eyebrow">Questions owners ask</p><h2>Frequently asked questions</h2></div>
     <div class="faq"><details open><summary>What is missed-call text-back?</summary><p class="answer">Missed-call text-back sends an automatic text to anyone whose call you miss, so they know you will call back and don&#x27;t move on to the next company. Clockwork Automation sets it up on your business numbers.</p></details><details><summary>Will it work with our current phone numbers?</summary><p class="answer">Usually yes. We can keep your existing numbers or set up a business phone platform that supports texting and logs every call and text to the customer&#x27;s record.</p></details><details><summary>Can after-hours calls be handled automatically?</summary><p class="answer">Yes. After-hours callers get an immediate text and land on a list for your team in the morning, or you can route true emergencies to whoever is on call. An AI phone agent can also answer after-hours calls and take the details.</p></details><details><summary>Can an AI phone agent answer our calls?</summary><p class="answer">Yes. Clockwork Automation sets up and trains an AI phone agent on your business: your hours, services and the questions customers ask most. It answers calls day and night, tells callers it is an AI assistant, takes their details and logs each call to your CRM, and passes anything it should not handle to your team. We review real call summaries with you and tune it after launch.</p></details><details><summary>How much does it cost?</summary><p class="answer">The first call is free. An automation audit is $500 and is credited toward the build. The build is quoted at a fixed price after the audit, and monthly support starts at $500 per month. Phone platform fees are billed to you directly by the provider.</p></details><details><summary>Do you set up and support the phone system?</summary><p class="answer">Yes. Clockwork Automation sets up and supports your business phone numbers and texting, and connects them to your CRM so every call and text is logged.</p></details></div>
     <p class="eyebrow" style="margin-top:40px">Other ways we help</p>
-    <div class="related"><a href="../lead-follow-up-san-diego/index.html">Lead follow-up</a><a href="../ai-phone-agent-san-diego/index.html">AI phone agents</a><a href="../collections-automation-property-managers-san-diego/index.html">Property managers</a><a href="../quote-follow-up-contractors-landscapers-san-diego/index.html">Contractors and landscapers</a><a href="../rebooking-review-requests-cleaning-med-spa-san-diego/index.html">Cleaning and med spas</a><a href="../fractional-operations-san-diego/index.html">Fractional operations</a></div>
+    <div class="related"><a href="/lead-follow-up-san-diego/">Lead follow-up</a><a href="/ai-phone-agent-san-diego/">AI phone agents</a><a href="/collections-automation-property-managers-san-diego/">Property managers</a><a href="/quote-follow-up-contractors-landscapers-san-diego/">Contractors and landscapers</a><a href="/rebooking-review-requests-cleaning-med-spa-san-diego/">Cleaning and med spas</a><a href="/fractional-operations-san-diego/">Fractional operations</a></div>
   </div></section>
   <section class="section band cta-band"><div class="wrap">
     <div><p class="eyebrow">Free 30-minute call</p><h2 style="margin-top:12px">Let's find your biggest leak.</h2></div>
-    <a class="btn btn-primary" href="../index.html#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
+    <a class="btn btn-primary" href="/#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
   </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="../index.html">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="/">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
 </body>
 </html>

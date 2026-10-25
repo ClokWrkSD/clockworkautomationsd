@@ -259,27 +259,27 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../index.html" aria-label="Clockwork Automation home">
+    <a class="brand" href="/" aria-label="Clockwork Automation home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 5.5v2.6M16 23.9v2.6M5.5 16h2.6M23.9 16h2.6"/></g><path d="M16 16V9.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 16l5 3" stroke="var(--brass)" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="var(--brass)"/></svg>
       Clockwork
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="../index.html#services">What we build</a>
-      <a href="../index.html#results">Results</a>
-      <a href="../index.html#how">How it works</a>
-      <a href="../index.html#ongoing">Fractional Ops</a>
-      <a href="../index.html#faq">FAQ</a>
-      <a class="btn btn-primary" href="../index.html#book">Book a free call</a>
+      <a href="/#services">What we build</a>
+      <a href="/#results">Results</a>
+      <a href="/#how">How it works</a>
+      <a href="/#ongoing">Fractional Ops</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn btn-primary" href="/#book">Book a free call</a>
     </nav>
   </div>
 </header>
 <main id="main">
   <section class="page-hero"><div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / Property managers</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Property managers</nav>
     <p class="eyebrow">Property management · San Diego County</p>
     <h1>Stop chasing late rent every month.</h1>
     <p class="answer-first">Clockwork Automation sets up late-rent reminders that go out on your schedule, with a payment link in every message, and gives your team one ranked list of who still owes. San Diego property managers spend less of each month chasing rent and more of it managing properties.</p>
-    <div class="hero-ctas"><a class="btn btn-primary" href="../index.html#book">Let's find your biggest leak</a><a class="btn btn-ghost" href="#calculator">Run your numbers</a></div>
+    <div class="hero-ctas"><a class="btn btn-primary" href="/#book">Let's find your biggest leak</a><a class="btn btn-ghost" href="#calculator">Run your numbers</a></div>
   </div></section>
   <section class="section" style="padding-top:0"><div class="wrap split">
     <div><p class="eyebrow">Sound familiar?</p><h2 style="margin-top:14px">Where the money slips away</h2><ul class="pains-list"><li>The first week of every month disappears into texts, calls and notices</li><li>The same tenants are late again and again</li><li>Nobody knows at a glance who has paid and who still owes</li><li>Late fees turn into arguments because reminders were inconsistent</li></ul></div>
@@ -291,20 +291,20 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div></section>
   <section class="section" id="calculator" style="padding-top:0"><div class="wrap">
     <div class="section-head"><p class="eyebrow">Quick math</p><h2>What is this costing you?</h2></div>
-    <div class="calc"><form class="calc-in" onsubmit="return false"><p class="lede" style="font-size:15px">Use your own numbers. Nothing you type leaves this page.</p><div class="field"><label for="c-h">Hours a week spent chasing rent</label><div class="input-row"><span>hrs</span><input id="c-h" type="number" inputmode="decimal" min="0" value="8"></div></div><div class="field"><label for="c-r">Value of one hour</label><div class="input-row"><span>$</span><input id="c-r" type="number" inputmode="decimal" min="0" value="40"></div></div><div class="field"><label for="c-o">Rent past due right now</label><div class="input-row"><span>$</span><input id="c-o" type="number" inputmode="decimal" min="0" value="12000"></div></div></form><div class="calc-out" aria-live="polite"><div class="readout"><span class="k">Time spent chasing rent, per year</span><span class="v" id="o-0">$0</span><p>Hours × hourly value × 50 weeks.</p></div><div class="readout"><span class="k">Rent waiting on tenants</span><span class="v" id="o-1">$0</span><p>Money already earned and not yet collected.</p></div><a class="btn btn-primary" href="../index.html#book">Let's find your biggest leak</a></div></div>
+    <div class="calc"><form class="calc-in" onsubmit="return false"><p class="lede" style="font-size:15px">Use your own numbers. Nothing you type leaves this page.</p><div class="field"><label for="c-h">Hours a week spent chasing rent</label><div class="input-row"><span>hrs</span><input id="c-h" type="number" inputmode="decimal" min="0" value="8"></div></div><div class="field"><label for="c-r">Value of one hour</label><div class="input-row"><span>$</span><input id="c-r" type="number" inputmode="decimal" min="0" value="40"></div></div><div class="field"><label for="c-o">Rent past due right now</label><div class="input-row"><span>$</span><input id="c-o" type="number" inputmode="decimal" min="0" value="12000"></div></div></form><div class="calc-out" aria-live="polite"><div class="readout"><span class="k">Time spent chasing rent, per year</span><span class="v" id="o-0">$0</span><p>Hours × hourly value × 50 weeks.</p></div><div class="readout"><span class="k">Rent waiting on tenants</span><span class="v" id="o-1">$0</span><p>Money already earned and not yet collected.</p></div><a class="btn btn-primary" href="/#book">Let's find your biggest leak</a></div></div>
 <script>(function(){var ks=["h", "r", "o"],ex=["h*r*50","o"],cnt=[false, false];function g(k){var v=parseFloat(document.getElementById('c-'+k).value);return isFinite(v)&&v>0?v:0;}function run(){var vals={};ks.forEach(function(k){vals[k]=g(k);});ex.forEach(function(e,i){var r=Function.apply(null,ks.concat(['return '+e])).apply(null,ks.map(function(k){return vals[k];}));document.getElementById('o-'+i).textContent=cnt[i]?Math.round(r).toLocaleString('en-US'):'$'+Math.round(r).toLocaleString('en-US');});}ks.forEach(function(k){document.getElementById('c-'+k).addEventListener('input',run);});run();})();</script>
   </div></section>
   <section class="section" style="padding-top:0"><div class="wrap">
     <div class="section-head"><p class="eyebrow">Questions owners ask</p><h2>Frequently asked questions</h2></div>
     <div class="faq"><details open><summary>Can late-rent reminders be automated for property managers?</summary><p class="answer">Yes. Clockwork Automation sets up reminders that go out automatically before and after the due date, by text and email, on the schedule you choose, with a payment link in every message.</p></details><details><summary>Will automated reminders work with our property management software?</summary><p class="answer">In most cases. We connect to your existing software or import its reports daily, then run reminders and the call list from a CRM (customer relationship manager) you own. The audit confirms the best setup for your software.</p></details><details><summary>Can we control which tenants get automated messages?</summary><p class="answer">Yes. You set the rules: commercial tenants, tenants on payment plans or anyone you choose can be excluded from automated messages and handled by hand.</p></details><details><summary>How much does collections automation cost?</summary><p class="answer">The first call is free. An automation audit is $500 and is credited toward the build. The build is quoted at a fixed price after the audit, and monthly support starts at $500 per month.</p></details><details><summary>Do you work with property managers outside San Diego?</summary><p class="answer">We are based in San Diego and meet clients in person across San Diego County. Property managers elsewhere can work with us remotely.</p></details></div>
     <p class="eyebrow" style="margin-top:40px">Other ways we help</p>
-    <div class="related"><a href="../lead-follow-up-san-diego/index.html">Lead follow-up</a><a href="../ai-phone-agent-san-diego/index.html">AI phone agents</a><a href="../missed-call-text-back-hvac-plumbing-san-diego/index.html">HVAC and plumbing</a><a href="../quote-follow-up-contractors-landscapers-san-diego/index.html">Contractors and landscapers</a><a href="../rebooking-review-requests-cleaning-med-spa-san-diego/index.html">Cleaning and med spas</a><a href="../fractional-operations-san-diego/index.html">Fractional operations</a></div>
+    <div class="related"><a href="/lead-follow-up-san-diego/">Lead follow-up</a><a href="/ai-phone-agent-san-diego/">AI phone agents</a><a href="/missed-call-text-back-hvac-plumbing-san-diego/">HVAC and plumbing</a><a href="/quote-follow-up-contractors-landscapers-san-diego/">Contractors and landscapers</a><a href="/rebooking-review-requests-cleaning-med-spa-san-diego/">Cleaning and med spas</a><a href="/fractional-operations-san-diego/">Fractional operations</a></div>
   </div></section>
   <section class="section band cta-band"><div class="wrap">
     <div><p class="eyebrow">Free 30-minute call</p><h2 style="margin-top:12px">Let's find your biggest leak.</h2></div>
-    <a class="btn btn-primary" href="../index.html#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
+    <a class="btn btn-primary" href="/#book" style="background:var(--brass);color:var(--band)">Book your free call</a>
   </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="../index.html">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span><a href="/">Home</a></span><span class="legal"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
 </body>
 </html>
