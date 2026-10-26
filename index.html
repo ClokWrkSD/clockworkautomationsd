@@ -208,7 +208,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Tiers */
 .tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-.tier { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.tier { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.tier > .btn { margin-top: auto; text-align: center; }
+.tier ul + .btn, .tier .sub-tiers + .btn { margin-top: auto; }
+.tier-premium .btn-light { background: #fff; color: #101a2c; border-color: #fff; }
+.tier-premium .btn-light:hover { transform: translateY(-1px); }
 .tier .price { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: 28px; line-height: 1.1; }
 .tier .price span { font-family: var(--f-body); font-size: 14px; font-weight: 500; color: var(--muted); }
 .tier p { color: var(--muted); font-size: 15px; }
@@ -555,7 +559,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
             <div><span>Essentials: monitoring, fixes, monthly results report</span><b>$500/mo</b></div>
             <div><span>Growth: Essentials plus one new automation a month and a strategy call</span><b>$1,200/mo</b></div>
           </div>
-          <a class="btn btn-ghost" href="/leak-calculator/">See how much you could save</a>
+          <a class="btn btn-primary" href="/leak-calculator/">See how much you could save</a>
         </article>
         <article class="tier tier-premium">
           <span class="tag">Fractional operations</span>
@@ -567,7 +571,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
             <li>Up to about 10 hours of hands-on process work a month</li>
             <li>Coaching for your team leads</li>
           </ul>
-          <a class="btn btn-ghost" href="#book" style="color:var(--band-ink);border-color:rgba(237,241,246,.3)">Ask about fractional ops</a>
+          <a class="btn btn-light" href="#book">Ask about fractional ops</a>
         </article>
         <article class="tier">
           <span class="tag">Coaching and training</span>
