@@ -158,6 +158,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .proof-stat .after .k { color: var(--brass-ink); }
 .proof-stat .arrow { font-family: var(--f-display); font-size: 26px; color: var(--brass); line-height: 1; }
 .proof-note { flex: 1 1 220px; max-width: 360px; line-height: 1.5; }
+.proof-line-2 { margin-top: 22px; }
+.proof-stat .t { font-family: var(--f-display); font-stretch: 112%; font-weight: 700; font-size: clamp(16px, 2.2vw, 19px); line-height: 1.25; color: var(--ink); max-width: 200px; }
+.proof-stat .after .t { color: var(--brass); }
 @media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
 
 /* Movement card */
@@ -358,6 +361,17 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
             </div>
           </div>
           <span class="proof-note">Same collector. Same hours. Real results from a San Diego company we automated collections for.</span>
+        </div>
+        <div class="proof-line proof-line-2">
+          <div class="proof-stat" role="group" aria-label="Lead follow-up for one sales team: before, manual texts and emails with guesswork about who to call; after, automatic texts and emails and a ranked call list">
+            <span class="head">Lead follow-up &middot; one sales team</span>
+            <div class="row">
+              <div class="before"><span class="k">Before</span><span class="t">Manual texts and emails. Guessing who to call.</span></div>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+              <div class="after"><span class="k">After</span><span class="t">Automatic follow-up. A clear list of who to call.</span></div>
+            </div>
+          </div>
+          <span class="proof-note">A CRM board we built for a San Diego sales team. Texts and emails go out on their own, and every lead is ranked so the team knows who to call next.</span>
         </div>
       </div>
 
