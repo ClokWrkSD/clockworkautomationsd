@@ -148,14 +148,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hero h1 em { font-style: normal; color: var(--brass); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .proof-line { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
-.proof-stat { display: flex; align-items: center; gap: 14px; }
-.proof-stat > div { display: grid; gap: 2px; }
+.proof-stat { display: grid; gap: 10px; }
+.proof-stat .head { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--brass-ink); }
+.proof-stat .row { display: flex; align-items: center; gap: 14px; }
+.proof-stat .row > div { display: grid; gap: 2px; }
 .proof-stat .k { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .proof-stat .n { font-family: var(--f-display); font-stretch: 120%; font-weight: 800; font-size: clamp(30px, 4.4vw, 42px); line-height: 1; font-variant-numeric: tabular-nums; color: var(--ink); }
 .proof-stat .after .n { color: var(--brass); font-size: clamp(38px, 5.6vw, 56px); }
 .proof-stat .after .k { color: var(--brass-ink); }
 .proof-stat .arrow { font-family: var(--f-display); font-size: 26px; color: var(--brass); line-height: 1; }
-.proof-stat .unit { align-self: end; padding-bottom: 6px; font-size: 14px; color: var(--muted); }
 .proof-note { flex: 1 1 220px; max-width: 360px; line-height: 1.5; }
 @media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
 
@@ -349,12 +350,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         </div>
         <div class="proof-line">
           <div class="proof-stat" role="group" aria-label="Calls per day for one collector: about 4 before, more than 50 after">
-            <div><span class="k">Before</span><span class="n">~4</span></div>
-            <span class="arrow" aria-hidden="true">&rarr;</span>
-            <div class="after"><span class="k">After</span><span class="n">50+</span></div>
-            <span class="unit">calls a day</span>
+            <span class="head">Calls a day &middot; one collector</span>
+            <div class="row">
+              <div><span class="k">Before</span><span class="n">~4</span></div>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+              <div class="after"><span class="k">After</span><span class="n">50+</span></div>
+            </div>
           </div>
-          <span class="proof-note">Same collector, same hours, at a San Diego company we automated collections for.</span>
+          <span class="proof-note">One collector, same hours, at a San Diego company we automated collections for.</span>
         </div>
       </div>
 
