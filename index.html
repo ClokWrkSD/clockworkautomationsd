@@ -127,9 +127,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-stretch: 125%; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; }
-.brand svg { width: 30px; height: 30px; flex: none; }
-.brand-text { display: grid; width: max-content; line-height: 1.05; }
-.brand-sub { display: block; width: 0; min-width: 100%; white-space: nowrap; text-transform: none; color: var(--brass-ink); font-size: 0.8em; letter-spacing: 0.18em; }
+.brand svg { width: 36px; height: 36px; flex: none; }
+.brand { gap: 12px; text-transform: none; letter-spacing: 0; }
+.brand-wordmark { display: flex; align-items: center; }
+.wm { height: 36px; width: auto; display: block; }
+.wm-dark { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wm-light { display: none; } :root:not([data-theme="light"]) .wm-dark { display: block; } }
+:root[data-theme="dark"] .wm-light { display: none; }
+:root[data-theme="dark"] .wm-dark { display: block; }
 .nav { display: flex; align-items: center; gap: 26px; font-size: 15px; }
 .nav a { text-decoration: none; color: var(--muted); }
 .nav a:hover { color: var(--ink); }
@@ -333,7 +338,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Clockwork Automation home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 5.5v2.6M16 23.9v2.6M5.5 16h2.6M23.9 16h2.6"/></g><path d="M16 16V9.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M16 16l5 3" stroke="var(--brass)" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="var(--brass)"/></svg>
-      <span class="brand-text"><span class="brand-main">Clockwork</span> <span class="brand-sub">automation</span></span>
+      <span class="brand-wordmark"><img class="wm wm-light" src="/assets/logo-wordmark-light.png" width="95" height="36" alt=""><img class="wm wm-dark" src="/assets/logo-wordmark-dark.png" width="95" height="36" alt=""></span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#services">What we build</a>
@@ -745,21 +750,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   } else {
     ticks.forEach(function (t) { t.classList.add('is-on'); });
   }
-
-  // Spread "automation" so it spans exactly the width of "Clockwork" in the header logo.
-  function fitBrand() {
-    var main = document.querySelector('.brand-main'), sub = document.querySelector('.brand-sub');
-    if (!main || !sub) return;
-    sub.style.letterSpacing = '0px';
-    var range = document.createRange();
-    range.selectNodeContents(sub);
-    var textW = range.getBoundingClientRect().width;
-    var n = sub.textContent.length;
-    if (n > 1 && textW > 0) sub.style.letterSpacing = ((main.getBoundingClientRect().width - textW) / (n - 1)) + 'px';
-  }
-  fitBrand();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBrand);
-  window.addEventListener('resize', fitBrand);
 })();
 </script>
 
