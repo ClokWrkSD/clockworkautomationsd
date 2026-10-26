@@ -218,6 +218,7 @@ html { scroll-padding-top: 88px; }
     <form id="gate-form" novalidate>
       <div class="fields">
         <div class="field"><label for="g-name">Name</label><input id="g-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="g-business">Company name</label><input id="g-business" name="business" type="text" autocomplete="organization" required></div>
         <div class="field"><label for="g-email">Email</label><input id="g-email" name="email" type="email" inputmode="email" autocomplete="email" required></div>
         <div class="field"><label for="g-phone">Mobile phone</label><input id="g-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(619) 555-0123" required></div>
         <div class="hp" aria-hidden="true"><label for="g-site">Leave this field empty</label><input id="g-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
@@ -368,26 +369,28 @@ html { scroll-padding-top: 88px; }
   function digits(s) { return (s || '').replace(/\D/g, ''); }
   function setErr(msg, field) {
     $('g-err').textContent = msg || '';
-    ['g-name', 'g-email', 'g-phone'].forEach(function (id) { $(id).setAttribute('aria-invalid', 'false'); });
+    ['g-name', 'g-business', 'g-email', 'g-phone'].forEach(function (id) { $(id).setAttribute('aria-invalid', 'false'); });
     if (field) { $(field).setAttribute('aria-invalid', 'true'); $(field).focus(); }
   }
 
   $('gate-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = $('g-name').value.trim(), email = $('g-email').value.trim(), phone = $('g-phone').value.trim();
+    var name = $('g-name').value.trim(), business = $('g-business').value.trim(), email = $('g-email').value.trim(), phone = $('g-phone').value.trim();
     if ($('g-site').value) { return; }
     if (name.length < 2) return setErr('Enter your name.', 'g-name');
+    if (business.length < 2) return setErr('Enter your company name.', 'g-business');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return setErr('Enter a valid email address.', 'g-email');
     var d = digits(phone);
     if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
     if (d.length !== 10) return setErr('Enter a 10-digit US phone number.', 'g-phone');
     if (!$('g-consent').checked) { setErr('Check the box to agree to be contacted.', 'g-consent'); return; }
     setErr('');
-    lead = { name: name, email: email, phone: '+1' + d };
+    lead = { name: name, business: business, email: email, phone: '+1' + d };
+    $('biz').value = business; calc();
     store('cw_lead', JSON.stringify(lead));
     var btn = $('g-submit'); btn.disabled = true; btn.textContent = 'Opening…';
     send(Object.assign({
-      event: 'lead', source: 'Leak Calculator', name: name, email: email, phone: lead.phone,
+      event: 'lead', source: 'Leak Calculator', name: name, business: business, email: email, phone: lead.phone,
       consent: 'yes', consent_text: CONSENT_TEXT, consent_time: new Date().toISOString(), page: location.origin + location.pathname
     }, params()));
     setTimeout(function () { unlock(true); }, 350);
@@ -396,7 +399,7 @@ html { scroll-padding-top: 88px; }
   $('g-consent').addEventListener('change', function () { if (this.checked) setErr(''); });
 
   // Returning visitors who already left their details skip the gate on this browser.
-  try { var saved = JSON.parse(load('cw_lead') || 'null'); if (saved && saved.email) { lead = saved; unlock(false); } } catch (e) {}
+  try { var saved = JSON.parse(load('cw_lead') || 'null'); if (saved && saved.email && saved.business) { lead = saved; $('biz').value = saved.business; unlock(false); } } catch (e) {}
 
   applyPreset('cautious');
   announceReady = true;
