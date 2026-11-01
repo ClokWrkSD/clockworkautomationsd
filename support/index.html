@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Client Support | Clockwork Automation</title>
+<meta name="description" content="Support for Clockwork Automation clients. Tell us what is not working and we will get on it.">
+<link rel="canonical" href="https://clockworkautomationsd.com/support/">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..800&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f3f5f8;--surface:#fff;--ink:#101a2c;--muted:#536077;--line:#d9dfe8;--field-line:#8a96a8;--brass:#a9741b;--brass-ink:#7f560f;--good:#1f7a4d;--bad:#b3261e;--f-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;--f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b111d;--surface:#121a2a;--ink:#e8edf4;--muted:#9aa7ba;--line:#233049;--field-line:#5b6a82;--brass:#e0a94b;--brass-ink:#ebbb68;--good:#5fd39a;--bad:#ff8a80}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--f-body)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding-block:22px;border-bottom:1px solid var(--line)}header a{color:var(--ink);font:800 20px var(--f-display);text-decoration:none}
+h1{font:800 clamp(30px,5vw,42px)/1.1 var(--f-display);margin:40px 0 6px}
+.lede{color:var(--muted);margin:0 0 24px}a{color:var(--brass-ink);text-decoration:underline;text-underline-offset:2px}
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;left:16px;top:-72px;z-index:100;padding:10px 16px;border-radius:8px;background:var(--ink);color:var(--paper);font-weight:600;text-decoration:none}.skip-link:focus{top:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.urgent{border-left:4px solid var(--bad);background:var(--surface);border-radius:8px;padding:12px 16px;margin:0 0 24px;font-size:15px}
+form{display:grid;gap:16px}
+.field{display:grid;gap:8px;min-width:0}.field label{font-weight:600;font-size:15px}.hint{font-size:13px;color:var(--muted)}
+.req{color:var(--bad)}
+input,select,textarea{width:100%;border:1px solid var(--field-line);background:var(--paper);color:var(--ink);border-radius:8px;padding:12px;font:16px var(--f-body)}
+textarea{min-height:140px;resize:vertical}
+[aria-invalid="true"]{border-color:var(--bad)}
+.field-err{color:var(--bad);font-size:14px}.field-err:empty{display:none}
+.btn{display:inline-flex;justify-content:center;width:100%;border:0;border-radius:10px;padding:14px 20px;background:var(--ink);color:var(--paper);font:700 16px var(--f-body);cursor:pointer}
+.btn[disabled]{opacity:.65;cursor:progress}
+.form-status{font-size:15px;font-weight:600;color:var(--good)}.form-status:empty{display:none}.form-status.is-error{color:var(--bad)}.form-status:focus{outline:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer a{color:inherit}
+footer{margin-top:56px;padding-block:32px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;max-width:760px}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header><div class="wrap"><a href="/">Clockwork Automation</a></div></header>
+<main class="wrap" id="main">
+<h1>Client support</h1>
+<p class="lede">Something not working the way it should? Tell us here and it goes straight into our support queue. You can also email <!--email_off-->helpdesk@clockworkautomationsd.com<!--/email_off-->.</p>
+<p class="urgent"><strong>Losing leads or payments right now?</strong> Send this form, then call or text <a href="tel:+16194892289">(619) 489-2289</a> so we see it immediately.</p>
+<div class="card">
+<form id="support-form" novalidate>
+  <div class="field"><label for="s-name">Your name <span class="req" aria-hidden="true">*</span></label><input id="s-name" name="name" type="text" autocomplete="name" required aria-describedby="s-name-err"><span class="field-err" id="s-name-err"></span></div>
+  <div class="field"><label for="s-business">Business name <span class="req" aria-hidden="true">*</span></label><input id="s-business" name="business" type="text" autocomplete="organization" required aria-describedby="s-business-err"><span class="field-err" id="s-business-err"></span></div>
+  <div class="field"><label for="s-email">Email <span class="req" aria-hidden="true">*</span></label><input id="s-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="s-email-err"><span class="field-err" id="s-email-err"></span></div>
+  <div class="field"><label for="s-phone">Phone</label><input id="s-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(619) 555-0123" aria-describedby="s-phone-err"><span class="field-err" id="s-phone-err"></span></div>
+  <div class="field"><label for="s-tool">Which part is it about?</label>
+    <select id="s-tool" name="tool">
+      <option value="">Not sure</option>
+      <option>Getting paid (invoices, reminders, payment links)</option>
+      <option>Lead follow-up (texts, emails, missed calls)</option>
+      <option>Booking, calendar or connected apps</option>
+      <option>Reports or dashboard</option>
+      <option>Website</option>
+      <option>Something else</option>
+    </select></div>
+  <div class="field"><label for="s-message">What's happening? <span class="req" aria-hidden="true">*</span></label><span class="hint" id="s-message-hint">What you saw, when it started, and what you expected instead.</span><textarea id="s-message" name="message" maxlength="2000" required aria-describedby="s-message-hint s-message-err"></textarea><span class="field-err" id="s-message-err"></span></div>
+  <div class="hp" aria-hidden="true"><label for="s-site">Leave this field empty</label><input id="s-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <button class="btn" type="submit" id="s-submit">Send to support</button>
+  <p class="form-status" id="s-status" role="status" tabindex="-1"></p>
+</form>
+</div>
+</main>
+<footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span class="legal"><a href="/support/">Client support</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
+<script>
+(function () {
+  var ENDPOINT = 'https://hook.us2.make.com/q76m03flqlbv9levodiletjc6mjj0bqg';
+  var form = document.getElementById('support-form');
+  var $ = function (id) { return document.getElementById(id); };
+  var status = $('s-status'), btn = $('s-submit');
+  var clean = function (t, max) { return String(t || '').replace(/[\u0000-\u001f"\\]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max); };
+  function setErr(id, msg) {
+    var input = $(id), err = $(id + '-err');
+    if (err) err.textContent = msg || '';
+    if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+  }
+  ['s-name', 's-business', 's-email', 's-phone', 's-message'].forEach(function (id) { $(id).addEventListener('input', function () { setErr(id, ''); }); });
+  function say(msg, isError) { status.textContent = msg; status.className = 'form-status' + (isError ? ' is-error' : ''); if (msg) status.focus(); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if ($('s-site').value) return;
+    var name = clean($('s-name').value, 100), business = clean($('s-business').value, 120), email = $('s-email').value.trim().slice(0, 200), message = clean($('s-message').value, 2000), tool = clean($('s-tool').value, 80);
+    var d = $('s-phone').value.replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    var bad = null;
+    if (name.length < 2) { setErr('s-name', 'Enter your name.'); bad = bad || 's-name'; } else setErr('s-name', '');
+    if (business.length < 2) { setErr('s-business', 'Enter your business name.'); bad = bad || 's-business'; } else setErr('s-business', '');
+    if (!/^[^\s@"\\]+@[^\s@"\\]+\.[^\s@"\\]{2,}$/.test(email)) { setErr('s-email', 'Enter a valid email address.'); bad = bad || 's-email'; } else setErr('s-email', '');
+    if (d.length && d.length !== 10) { setErr('s-phone', 'Enter a 10-digit US phone number, or leave it blank.'); bad = bad || 's-phone'; } else setErr('s-phone', '');
+    if (message.length < 5) { setErr('s-message', 'Tell us what is happening.'); bad = bad || 's-message'; } else setErr('s-message', '');
+    if (bad) { say('', false); $(bad).focus(); return; }
+    btn.disabled = true; btn.textContent = 'Sending\u2026'; say('', false);
+    var body = new URLSearchParams({ event: 'support', source: 'Website support form', name: name, business: business, email: email, phone: d ? '+1' + d : '', tool: tool, message: message, page: location.origin + location.pathname, submitted_at: new Date().toISOString() }).toString();
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 12000) : null;
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error('bad status'); form.reset(); say('Got it. Your request is in our queue and we will reply by email, usually within one business day.', false); })
+      .catch(function () { say('We could not confirm that went through. Please email helpdesk@clockworkautomationsd.com or call or text (619) 489-2289.', true); })
+      .then(function () { if (timer) clearTimeout(timer); btn.disabled = false; btn.textContent = 'Send to support'; });
+  });
+})();
+</script>
+</body>
+</html>
