@@ -35,6 +35,9 @@ textarea{min-height:140px;resize:vertical}
 .btn{display:inline-flex;justify-content:center;width:100%;border:0;border-radius:10px;padding:14px 20px;background:var(--ink);color:var(--paper);font:700 16px var(--f-body);cursor:pointer}
 .btn[disabled]{opacity:.65;cursor:progress}
 .form-status{font-size:15px;font-weight:600;color:var(--good)}.form-status:empty{display:none}.form-status.is-error{color:var(--bad)}.form-status:focus{outline:none}
+h2{font:700 22px var(--f-display);margin:40px 0 8px}
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}thead th{font-weight:700;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}tbody th{font-weight:600}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer a{color:inherit}
 footer{margin-top:56px;padding-block:32px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
@@ -69,6 +72,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
   <button class="btn" type="submit" id="s-submit">Send to support</button>
   <p class="form-status" id="s-status" role="status" tabindex="-1"></p>
 </form>
+</div>
+<h2>Response times</h2>
+<p class="lede">Business hours are 8am to 6pm Pacific, Monday to Friday. Every request gets a ticket number starting with CW-.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th scope="col">Priority</th><th scope="col">Growth plan</th><th scope="col">Essentials plan</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Down: a tool stopped capturing leads or money</th><td>Reply in 2 business hours, fixed in 1 business day</td><td>Reply in 4 business hours, fixed in 2 business days</td></tr>
+    <tr><th scope="row">Degraded: working, but wrong or slow</th><td>Reply in 1 business day, fixed in 3</td><td>Reply in 2 business days, fixed in 5</td></tr>
+    <tr><th scope="row">Questions and small requests</th><td colspan="2">Best effort</td></tr>
+    <tr><th scope="row">New features or changes</th><td colspan="2">Scoped and quoted separately</td></tr>
+  </tbody>
+</table>
 </div>
 </main>
 <footer><div class="wrap"><span>© 2026 Clockwork Automation · San Diego, California</span><span class="legal"><a href="/support/">Client support</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/accessibility/">Accessibility</a></span></div></footer>
