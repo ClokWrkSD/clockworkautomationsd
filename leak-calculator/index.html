@@ -298,6 +298,25 @@ html { scroll-padding-top: 88px; }
     calc();
   }
 
+  // Record of every visitor's numbers. The nine "Your numbers" fields start pre-filled with examples, so own_numbers is yes only once the visitor changes at least one of them.
+  var OWN_IDS = ['hours', 'rate', 'overdue', 'writeoffs', 'quotes', 'job', 'missed', 'callbook', 'margin'];
+  var defaults = {};
+  OWN_IDS.forEach(function (id) { defaults[id] = $(id).value; });
+  function ownNumbers() { return OWN_IDS.some(function (id) { return $(id).value !== defaults[id]; }); }
+  var autosaveTimer, lastSentSig = '';
+  function who() { return { source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() }; }
+  function saveInputs(force) {
+    if (!lead || !snapshot.own_numbers) return;
+    if (!force && snapshot.own_numbers !== 'yes') return;
+    var sig = JSON.stringify(snapshot);
+    if (!force && sig === lastSentSig) return;
+    lastSentSig = sig;
+    send(Object.assign({ event: 'inputs' }, who(), snapshot));
+  }
+  function scheduleAutosave() { clearTimeout(autosaveTimer); autosaveTimer = setTimeout(function () { saveInputs(false); }, 15000); }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') { clearTimeout(autosaveTimer); saveInputs(false); } });
+  window.addEventListener('pagehide', function () { clearTimeout(autosaveTimer); saveInputs(false); });
+
   var lastSummary = '';
   var announceReady = false, announceTimer;
   function calc() {
@@ -336,11 +355,18 @@ html { scroll-padding-top: 88px; }
     var biz = $('biz').value.trim();
     $('title').textContent = biz ? 'What ' + biz + ' could get back' : 'What you could get back';
     var label = { cautious: 'cautious', expected: 'expected', strong: 'strong' }[current] || 'custom';
+    var own = ownNumbers();
     snapshot = {
+      own_numbers: own ? 'yes' : 'no',
       scenario: label, hours_week: String(v('hours')), hourly_value: String(v('rate')), overdue: String(v('overdue')), writeoffs: String(v('writeoffs')),
       quiet_quotes_month: String(v('quotes')), job_value: String(v('job')), missed_calls_week: String(v('missed')),
-      yearly_leak: String(Math.round(leak)), yearly_gain: String(Math.round(total)), cash_freed: String(Math.round(cash)), first_year_net: String(Math.round(net))
+      callbook_pct: String(v('callbook')), margin_pct: String(v('margin')),
+      a_hours_pct: String(v('a-hours')), a_writeoffs_pct: String(v('a-writeoffs')), a_overdue_pct: String(v('a-overdue')), a_quotes_pct: String(v('a-quotes')), a_calls_pct: String(v('a-calls')),
+      build_price: String(v('build')), monthly_support: String(v('support')),
+      yearly_leak: String(Math.round(leak)), yearly_gain: String(Math.round(total)), cash_freed: String(Math.round(cash)), first_year_net: String(Math.round(net)),
+      payback_months: payback === null ? 'not reached' : String(Math.round(payback * 10) / 10), hours_back_week: String(Math.round(v('hours') * pct('a-hours') * 10) / 10)
     };
+    scheduleAutosave();
     lastSummary = [
       (biz || 'Your business') + ': money-leak report',
       '',
@@ -378,7 +404,7 @@ html { scroll-padding-top: 88px; }
 
   // Booking click: log the visitor's numbers to their lead record so the call starts from them. Same 'report' event the old button used.
   $('book').addEventListener('click', function () {
-    if (lead) send(Object.assign({ event: 'report', cta: 'book_call', source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() }, snapshot));
+    if (lead) { clearTimeout(autosaveTimer); lastSentSig = JSON.stringify(snapshot); send(Object.assign({ event: 'report', cta: 'book_call' }, who(), snapshot)); }
   });
 
   /* Gate */
