@@ -93,7 +93,15 @@ html { scroll-padding-top: 88px; }
 .btn { border: 1px solid transparent; border-radius: 8px; padding: 11px 16px; font: 600 15px var(--f-body); cursor: pointer; background: var(--ink); color: var(--paper); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .status { font-size: 13.5px; color: var(--good); font-weight: 600; }
-.recap { width: 100%; margin-top: 12px; min-height: 160px; border: 1px solid var(--field-line); border-radius: 8px; background: var(--paper); color: var(--ink); font: 13px/1.5 var(--f-mono); padding: 12px; }
+.cta { margin-top: 4px; padding: 20px; border: 2px solid var(--ink); border-radius: 12px; background: var(--brass-wash); }
+.cta h3 { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: clamp(20px, 2.6vw, 24px); line-height: 1.15; margin: 6px 0 8px; text-wrap: balance; }
+.cta-sub { margin: 0 0 12px; font-size: 14.5px; }
+.cta-list { margin: 0 0 16px; padding: 0; list-style: none; display: grid; gap: 7px; }
+.cta-list li { position: relative; padding-left: 24px; font-size: 14px; }
+.cta-list li::before { content: ""; position: absolute; left: 2px; top: .38em; width: 11px; height: 6px; border-left: 2.5px solid var(--good); border-bottom: 2.5px solid var(--good); transform: rotate(-45deg); }
+.btn-cta { display: block; width: 100%; text-align: center; text-decoration: none; padding: 15px 18px; font-size: 17px; }
+.btn-cta:hover { filter: brightness(1.12); }
+.cta-micro { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); text-align: center; }
 .note { font-size: 12.5px; color: var(--muted); margin-top: 14px; }
 .leak-line { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 10px; background: var(--brass-wash); margin-bottom: 16px; }
 .leak-line b { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -205,11 +213,18 @@ html { scroll-padding-top: 88px; }
         <div class="stat"><span class="k">Hours back</span><div class="v" id="o-hrs">0</div><p>Per week, for your team</p></div>
       </div>
       <div class="bars" id="bars"></div>
-      <div class="actions">
-        <button class="btn" type="button" id="copy">Copy my report</button>
-        <span class="status" id="copy-status" hidden></span>
+      <div class="cta" id="cta" aria-labelledby="cta-head">
+        <span class="k">Your next step · free 30-minute call</span>
+        <h3 id="cta-head">Let’s plug these leaks.</h3>
+        <p class="cta-sub" id="cta-sub">Book a free call and we’ll go through your numbers together.</p>
+        <ul class="cta-list">
+          <li>Your biggest leaks ranked by dollars, checked against your real numbers</li>
+          <li>The first fix worth making, explained in plain English</li>
+          <li>An honest answer on whether automation pays off for you. If it doesn’t, we’ll say so.</li>
+        </ul>
+        <a class="btn btn-cta" id="book" href="https://calendar.app.google/fnYziLnpyWsarrMy7" target="_blank" rel="noopener">Book my free call</a>
+        <p class="cta-micro">Free · 30 minutes · No obligation · Pick a time that suits you · Your numbers come with you, so we skip the small talk</p>
       </div>
-      <textarea class="recap" id="recap" readonly hidden aria-label="Report text"></textarea>
       <p class="note">Estimates based on your own numbers and the scenario chosen above. Actual results depend on the business and are confirmed in an automation audit.</p>
     </aside>
   </div>
@@ -338,6 +353,14 @@ html { scroll-padding-top: 88px; }
       '',
       'Next step: a $500 automation audit, credited toward the build, to confirm these numbers and map the plan.'
     ].join('\n');
+    var top = rows.slice().sort(function (a, b) { return b.val - a.val; })[0];
+    if (leak > 0) {
+      $('cta-head').textContent = 'You’re leaking about ' + money(leak) + ' a year. Let’s plug it.';
+      $('cta-sub').textContent = 'That’s roughly ' + money(leak / 12) + ' every month you wait. Your biggest recoverable leak is ' + top.name.toLowerCase() + ' (' + money(top.val) + '/yr). In 30 minutes we’ll check these numbers with you and map the fastest way to get that money back.';
+    } else {
+      $('cta-head').textContent = 'Let’s find your leaks.';
+      $('cta-sub').textContent = 'Add your numbers above, or skip ahead: in a free 30-minute call we’ll find them together.';
+    }
     if (announceReady) {
       clearTimeout(announceTimer);
       announceTimer = setTimeout(function () {
@@ -353,13 +376,9 @@ html { scroll-padding-top: 88px; }
   document.querySelectorAll('#calc input').forEach(function (el) { if (!/^a-/.test(el.id)) el.addEventListener('input', calc); });
   $('biz').addEventListener('input', calc);
 
-  $('copy').addEventListener('click', function () {
-    var s = $('copy-status'), ta = $('recap');
-    var fallback = function () { ta.value = lastSummary; ta.hidden = false; ta.focus(); ta.select(); s.textContent = 'Select all and copy the text below.'; s.hidden = false; };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(lastSummary).then(function () { s.textContent = 'Copied.'; s.hidden = false; ta.hidden = true; }, fallback);
-    } else { fallback(); }
-    if (lead) send(Object.assign({ event: 'report', source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() }, snapshot));
+  // Booking click: log the visitor's numbers to their lead record so the call starts from them. Same 'report' event the old button used.
+  $('book').addEventListener('click', function () {
+    if (lead) send(Object.assign({ event: 'report', cta: 'book_call', source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() }, snapshot));
   });
 
   /* Gate */
