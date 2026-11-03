@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link rel="icon" href="/favicon.ico?v=20261031" sizes="48x48">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261031">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261031">
+<link rel="icon" href="/favicon.ico?v=20261102" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261102">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261102">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Free Money-Leak Calculator for Small Businesses | Clockwork Automation</title>
@@ -14,7 +14,12 @@
 <meta property="og:title" content="How much is your business losing to late payments and missed follow-up?">
 <meta property="og:description" content="Free two-minute money-leak calculator for owner-run businesses. See what you could get back each year.">
 <meta property="og:url" content="https://clockworkautomationsd.com/leak-calculator/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://clockworkautomationsd.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Clockwork Automation logo">
+<meta name="twitter:image" content="https://clockworkautomationsd.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -40,6 +45,12 @@ img { max-width: 100%; }
 .wrap { max-width: 1160px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
 header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; padding-bottom: 20px; border-bottom: 2px solid var(--ink); margin-bottom: 24px; }
 .brand { font-family: var(--f-display); font-stretch: 125%; font-weight: 800; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass-ink); }
+.brand-logo { display: inline-block; margin-bottom: 10px; }
+.brand-logo .wm { height: 32px; width: auto; display: block; }
+.brand-logo .wm-dark { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .wm-light { display: none; } :root:not([data-theme="light"]) .wm-dark { display: block; } }
+:root[data-theme="dark"] .wm-light { display: none; }
+:root[data-theme="dark"] .wm-dark { display: block; }
 h1 { font-family: var(--f-display); font-stretch: 120%; font-weight: 800; font-size: clamp(28px, 4vw, 40px); line-height: 1.05; margin: 6px 0 0; text-wrap: balance; }
 .biz { display: grid; gap: 4px; min-width: 0; flex: 0 1 280px; }
 .biz label { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -133,7 +144,7 @@ html { scroll-padding-top: 88px; }
 <main class="wrap" id="main">
   <header>
     <div>
-      <div class="brand">Clockwork Automation</div>
+      <a class="brand-logo" href="/" aria-label="Clockwork Automation home"><img class="wm wm-light" src="/assets/clockwork-logo-light.svg?v=20261102" width="97" height="32" alt=""><img class="wm wm-dark" src="/assets/clockwork-logo-dark.svg?v=20261102" width="97" height="32" alt=""></a>
       <h1 id="title">What you could get back</h1>
     </div>
     <div class="biz">
