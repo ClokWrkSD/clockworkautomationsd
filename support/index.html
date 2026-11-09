@@ -38,6 +38,7 @@ textarea{min-height:140px;resize:vertical}
 h2{font:700 22px var(--f-display);margin:40px 0 8px}
 .table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}thead th{font-weight:700;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}tbody th{font-weight:600}
+.done{border-left:4px solid var(--good);padding:4px 0 4px 18px}.done h2{margin-top:0}.done .meta{color:var(--muted);font-size:15px}.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);width:auto;margin-top:8px}.done:focus{outline:none}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer a{color:inherit}
 footer{margin-top:56px;padding-block:32px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
@@ -60,18 +61,24 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
   <div class="field"><label for="s-tool">What channel is affected</label>
     <select id="s-tool" name="tool">
       <option value="">Not sure</option>
-      <option>Getting paid (invoices, reminders, payment links)</option>
-      <option>Lead follow-up (texts, emails, missed calls)</option>
-      <option>Booking, calendar or connected apps</option>
-      <option>Reports or dashboard</option>
+      <option>Phone</option>
+      <option>Text</option>
+      <option>Email</option>
       <option>Website</option>
-      <option>Something else</option>
+      <option>Other</option>
     </select></div>
   <div class="field"><label for="s-message">What's happening? <span class="req" aria-hidden="true">*</span></label><span class="hint" id="s-message-hint">What you saw, when it started, and what you expected instead. Please provide as much detail as you can. The more information we have upfront the quicker we can work on a solution for you</span><textarea id="s-message" name="message" maxlength="2000" required aria-describedby="s-message-hint s-message-err"></textarea><span class="field-err" id="s-message-err"></span></div>
   <div class="hp" aria-hidden="true"><label for="s-site">Leave this field empty</label><input id="s-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
   <button class="btn" type="submit" id="s-submit">Send to support</button>
   <p class="form-status" id="s-status" role="status" tabindex="-1"></p>
 </form>
+<section class="done" id="s-done" tabindex="-1" hidden aria-live="polite">
+  <h2>Request received</h2>
+  <p id="s-done-msg"></p>
+  <p class="meta" id="s-done-meta"></p>
+  <p>Urgent? Call <a href="tel:+16194892289">619-489-2289</a>.</p>
+  <button class="btn alt" type="button" id="s-again">Send another request</button>
+</section>
 </div>
 <h2>Response times</h2>
 <p class="lede">Business hours are 8am to 6pm Pacific, Monday to Friday. We aim to reply within 2 business hours. If this is urgent please call us at 619-489-2289 after creating a ticket.</p>
@@ -108,11 +115,29 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     var body = new URLSearchParams({ event: 'support', source: 'Website support form', name: name, business: business, email: email, phone: d ? '+1' + d : '', tool: tool, message: message, page: location.origin + location.pathname, submitted_at: new Date().toISOString() }).toString();
     var ctl = ('AbortController' in window) ? new AbortController() : null;
     var timer = ctl ? setTimeout(function () { ctl.abort(); }, 12000) : null;
+    var sentName = name, sentEmail = email;
     fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: ctl ? ctl.signal : undefined })
-      .then(function (r) { if (!r.ok) throw new Error('bad status'); form.reset(); say('Got it. Your request is in our queue and we will reply by email, usually within one business day.', false); })
-      .catch(function () { say('We could not confirm that went through. Please email helpdesk@clockworkautomationsd.com or call or text (619) 489-2289.', true); })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var j = null; try { j = JSON.parse(t); } catch (x) {}
+          if (!r.ok || (j && j.ok === false)) throw new Error('not saved');
+          return j;
+        });
+      })
+      .then(function (j) {
+        form.reset();
+        form.hidden = true;
+        $('s-done-msg').textContent = 'Thanks, ' + sentName.split(' ')[0] + '. Your request is in our support queue. We will reply to ' + sentEmail + ', and we aim to reply within 2 business hours (8am to 6pm Pacific, Monday to Friday).';
+        $('s-done-meta').textContent = (j && j.received_at) ? 'Received ' + j.received_at + ' Pacific.' : '';
+        $('s-done').hidden = false; $('s-done').focus();
+      })
+      .catch(function (err) {
+        var timedOut = err && err.name === 'AbortError';
+        say((timedOut ? 'We did not get a confirmation back in time, so we cannot tell if your request arrived. ' : 'Your request was not received. ') + 'Your answers are still here, so you can try Send to support again. Or email helpdesk@clockworkautomationsd.com or call or text (619) 489-2289.', true);
+      })
       .then(function () { if (timer) clearTimeout(timer); btn.disabled = false; btn.textContent = 'Send to support'; });
   });
+  $('s-again').addEventListener('click', function () { $('s-done').hidden = true; form.hidden = false; say('', false); $('s-name').focus(); });
 })();
 </script>
 </body>
