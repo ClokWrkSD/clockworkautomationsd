@@ -233,6 +233,10 @@ html { scroll-padding-top: 88px; }
           <li>The first fix worth making, explained in plain English</li>
           <li>An honest answer on whether automation pays off for you. If it doesn’t, we’ll say so.</li>
         </ul>
+        <div id="send-wrap" hidden style="margin:0 0 14px">
+          <button class="btn" type="button" id="send-nums">Send my numbers to Jeremy</button>
+          <p class="cta-micro" id="send-status" role="status" style="margin-top:8px"></p>
+        </div>
         <a class="btn btn-cta" id="book" href="https://calendar.app.google/fnYziLnpyWsarrMy7" target="_blank" rel="noopener">Book my free call</a>
         <p class="cta-micro">Free · 30 minutes · No obligation · Pick a time that suits you · Your numbers come with you, so we skip the small talk</p>
       </div>
@@ -315,7 +319,10 @@ html { scroll-padding-top: 88px; }
   OWN_IDS.forEach(function (id) { defaults[id] = $(id).value; });
   function ownNumbers() { return OWN_IDS.some(function (id) { return $(id).value !== defaults[id]; }); }
   var autosaveTimer, lastSentSig = '';
-  function who() { return { source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() }; }
+  function who() {
+    if (lead && lead.lid) return { source: 'pre-call-email', lid: lead.lid, k: lead.k, name: lead.name, business: $('biz').value.trim() };
+    return { source: 'Leak Calculator', email: lead.email, phone: lead.phone, name: lead.name, business: $('biz').value.trim() };
+  }
   function saveInputs(force) {
     if (!lead || !snapshot.own_numbers) return;
     if (!force && snapshot.own_numbers !== 'yes') return;
@@ -457,8 +464,30 @@ html { scroll-padding-top: 88px; }
 
   $('g-consent').addEventListener('change', function () { if (this.checked) setErr(''); });
 
+  // Signed pre-call link (lid, fn, biz, k): skips the gate. No contact details are in the URL and no new consent is collected.
+  // The page only checks the shape of lid and k; Make verifies the signature before writing anything.
+  var linked = false;
+  try {
+    var q = new URLSearchParams(location.search), lid = q.get('lid') || '', kk = q.get('k') || '';
+    if (/^[A-Za-z0-9_-]{4,40}$/.test(lid) && /^[0-9a-f]{8}$/.test(kk)) {
+      var fn = (q.get('fn') || '').trim().slice(0, 60), bz = (q.get('biz') || '').trim().slice(0, 100);
+      lead = { name: fn, business: bz, lid: lid, k: kk };
+      $('biz').value = bz;
+      linked = true;
+      unlock(false);
+      $('send-wrap').hidden = false;
+    }
+  } catch (e) {}
+  $('send-nums').addEventListener('click', function () {
+    if (!lead || !lead.lid) return;
+    clearTimeout(autosaveTimer); lastSentSig = JSON.stringify(snapshot);
+    send(Object.assign({ event: 'submit' }, who(), snapshot, params()));
+    this.textContent = 'Sent. Thank you!'; this.disabled = true;
+    $('send-status').textContent = 'Jeremy will have your numbers before the call. You can still change them and book below.';
+  });
+
   // Returning visitors who already left their details skip the gate on this browser.
-  try { var saved = JSON.parse(load('cw_lead') || 'null'); if (saved && saved.email && saved.business) { lead = saved; $('biz').value = saved.business; unlock(false); } } catch (e) {}
+  if (!linked) try { var saved = JSON.parse(load('cw_lead') || 'null'); if (saved && saved.email && saved.business) { lead = saved; $('biz').value = saved.business; unlock(false); } } catch (e) {}
 
   applyPreset('cautious');
   announceReady = true;
