@@ -57,7 +57,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
   <div class="field"><label for="s-business">Business name <span class="req" aria-hidden="true">*</span></label><input id="s-business" name="business" type="text" autocomplete="organization" required aria-describedby="s-business-err"><span class="field-err" id="s-business-err"></span></div>
   <div class="field"><label for="s-email">Email <span class="req" aria-hidden="true">*</span></label><input id="s-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="s-email-err"><span class="field-err" id="s-email-err"></span></div>
   <div class="field"><label for="s-phone">Phone</label><input id="s-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(619) 555-0123" aria-describedby="s-phone-err"><span class="field-err" id="s-phone-err"></span></div>
-  <div class="field"><label for="s-tool">Which part is it about?</label>
+  <div class="field"><label for="s-tool">What channel is affected</label>
     <select id="s-tool" name="tool">
       <option value="">Not sure</option>
       <option>Getting paid (invoices, reminders, payment links)</option>
@@ -67,7 +67,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <option>Website</option>
       <option>Something else</option>
     </select></div>
-  <div class="field"><label for="s-message">What's happening? <span class="req" aria-hidden="true">*</span></label><span class="hint" id="s-message-hint">What you saw, when it started, and what you expected instead.</span><textarea id="s-message" name="message" maxlength="2000" required aria-describedby="s-message-hint s-message-err"></textarea><span class="field-err" id="s-message-err"></span></div>
+  <div class="field"><label for="s-message">What's happening? <span class="req" aria-hidden="true">*</span></label><span class="hint" id="s-message-hint">What you saw, when it started, and what you expected instead. Please provide as much detail as you can. The more information we have upfront the quicker we can work on a solution for you</span><textarea id="s-message" name="message" maxlength="2000" required aria-describedby="s-message-hint s-message-err"></textarea><span class="field-err" id="s-message-err"></span></div>
   <div class="hp" aria-hidden="true"><label for="s-site">Leave this field empty</label><input id="s-site" name="website" type="text" tabindex="-1" autocomplete="off"></div>
   <button class="btn" type="submit" id="s-submit">Send to support</button>
   <p class="form-status" id="s-status" role="status" tabindex="-1"></p>
